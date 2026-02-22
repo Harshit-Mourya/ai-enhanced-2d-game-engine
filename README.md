@@ -38,6 +38,10 @@ The foundation phase of the engine is complete and demonstrates the core real-ti
 
 ### Demo
 
+
+https://github.com/user-attachments/assets/8f803925-c865-4c6e-b848-bf969939eac3
+
+
 The current demo displays a movable square controlled using arrow keys, serving as a proof-of-concept for:
 Input → Game Loop → State Update → SVG Rendering
 
