@@ -39,3 +39,67 @@ The foundation phase of the engine is complete and demonstrates the core real-ti
 ### Demo
 
 The current demo displays a movable square controlled using arrow keys, serving as a proof-of-concept for:
+Input → Game Loop → State Update → SVG Rendering
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend Framework:** React (Vite)
+- **Language:** JavaScript
+- **Rendering:** SVG
+- **Styling:** CSS (UI-agnostic engine design)
+- **Version Control:** Git & GitHub
+
+---
+
+## 🧠 Design Philosophy
+
+- The **engine** is independent of game themes, colors, and UI styling.
+- Game-specific behavior (movement rules, visuals, themes) is handled at the application level.
+- The architecture is designed to be extensible for AI, physics, and advanced gameplay systems.
+
+---
+
+## 🔮 Planned Features (Next Phases)
+
+- Redux-based state management
+- Physics and collision systems
+- AI enemy behavior using Finite State Machines (FSM)
+- Pathfinding algorithms (BFS / A\*)
+- Rule-based adaptive difficulty system
+- Multiple demo games (e.g., Pacman-style, platformer-style)
+- Optional backend support for user progress persistence
+
+---
+
+## 🎓 Academic Context
+
+This project also serves as a research-oriented study in:
+
+- Real-time web-based game engines
+- Feasibility of React and Redux for game engine architecture
+- Lightweight, explainable AI techniques for browser-based games
+
+---
+
+## 📌 Note
+
+This repository currently represents the **foundation phase** of the engine.  
+Advanced gameplay mechanics and AI systems will be added incrementally in future phases.
+
+---
+
+## 📷 Demo Preview
+
+Live demo and screenshots will be added after the introductory seminar presentation.
+
+---
+
+## 👤 Author
+
+**Harshit Mourya**  
+MCA Student  
+Major Project – AI-Enhanced Real-Time 2D Game Engine
+
+This project is developed as part of the MCA curriculum, focusing on real-time web-based game engine design and AI-ready architecture.
