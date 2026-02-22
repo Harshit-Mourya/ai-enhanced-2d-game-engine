@@ -90,12 +90,6 @@ Advanced gameplay mechanics and AI systems will be added incrementally in future
 
 ---
 
-## 📷 Demo Preview
-
-Live demo and screenshots will be added after the introductory seminar presentation.
-
----
-
 ## 👤 Author
 
 **Harshit Mourya**  
