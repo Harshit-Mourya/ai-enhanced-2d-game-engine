@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export default function SvgRenderer() {
   //   console.log("SvgRenderer render");
   const player = useSelector((state) => state.entities.player);
-
+  const enemy = useSelector((state) => state.entities.enemy);
   return (
     <svg
       width="600"
@@ -13,7 +13,16 @@ export default function SvgRenderer() {
       style={{ border: "1px solid white", background: "#070404" }}
     >
       {/* Player */}
-      <rect x={player.x} y={player.y} width="30" height="30" fill="#00eeff" />
+      <rect
+        x={player.x}
+        y={player.y}
+        width="30"
+        height="30"
+        fill={player.collided ? "yellow" : "#00eeff"}
+      />
+
+      {/* Enemy */}
+      <rect x={enemy.x} y={enemy.y} width="30" height="30" fill="red" />
     </svg>
   );
 }

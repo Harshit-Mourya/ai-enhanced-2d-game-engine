@@ -10,6 +10,14 @@ const entitySlice = createSlice({
       dx: 0,
       dy: 0,
       speed: 2,
+      collided: false,
+    },
+    enemy: {
+      x: 300,
+      y: 200,
+      direction: 1,
+      speed: 1.5,
+      collided: false,
     },
   },
   reducers: {
@@ -33,6 +41,33 @@ const entitySlice = createSlice({
 
       if (state.player.y < 0) state.player.y = 0;
       if (state.player.y > 370) state.player.y = 370;
+
+      // ENEMY AUTO MOVEMENT (left ↔ right)
+
+      state.enemy.x += state.enemy.speed * state.enemy.direction;
+
+      if (state.enemy.x < 0 || state.enemy.x > 570) {
+        state.enemy.direction *= -1;
+      }
+
+      // PLAYER–ENEMY COLLISION DETECTION
+
+      const playerRight = state.player.x + 30;
+      const playerBottom = state.player.y + 30;
+
+      const enemyRight = state.enemy.x + 30;
+      const enemyBottom = state.enemy.y + 30;
+
+      const collision =
+        state.player.x < enemyRight &&
+        playerRight > state.enemy.x &&
+        state.player.y < enemyBottom &&
+        playerBottom > state.enemy.y;
+
+      if (collision) {
+        state.player.collided = collision;
+        state.enemy.collided = collision;
+      }
     },
   },
 });
