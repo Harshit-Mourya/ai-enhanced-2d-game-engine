@@ -22,7 +22,13 @@ export default function SvgRenderer() {
       />
 
       {/* Enemy */}
-      <rect x={enemy.x} y={enemy.y} width="30" height="30" fill="red" />
+      <rect
+        x={enemy.x}
+        y={enemy.y}
+        width="30"
+        height="30"
+        fill={enemy.state === "chase" ? "red" : "orange"}
+      />
     </svg>
   );
 }
