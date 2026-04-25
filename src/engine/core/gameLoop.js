@@ -1,9 +1,12 @@
 // src/engine/core/gameLoop.js
 
+import { store } from "../state/store";
+import { updatePosition } from "../state/store";
+
 let lastTime = 0;
 let isRunning = false;
 
-export function startGameLoop(update) {
+export function startGameLoop() {
   isRunning = true;
 
   function loop(time) {
@@ -12,7 +15,9 @@ export function startGameLoop(update) {
     const deltaTime = time - lastTime;
     lastTime = time;
 
-    update(deltaTime);
+    // engine update step
+    store.dispatch(updatePosition(deltaTime));
+
     requestAnimationFrame(loop);
   }
 

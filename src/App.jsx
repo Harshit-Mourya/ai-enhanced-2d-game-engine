@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { startGameLoop, stopGameLoop } from "./engine/core/gameLoop";
 import SvgRenderer from "./engine/rendering/SvgRenderer";
 import { useDispatch } from "react-redux";
-import { setDirection, updatePosition } from "./engine/state/store";
+import { setDirection } from "./engine/state/store";
+import level1 from "./engine/levels/level1.json";
+import { loadLevel } from "./engine/state/store";
 
 function App() {
   const [, setTick] = useState(0);
@@ -49,11 +51,8 @@ function App() {
     window.addEventListener("keyup", handleKeyUp);
 
     // 🎮 GAME LOOP
-    startGameLoop(() => {
-      dispatch(updatePosition());
-
-      setTick((t) => t + 1); // force render
-    });
+    dispatch(loadLevel(level1));
+    startGameLoop();
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);

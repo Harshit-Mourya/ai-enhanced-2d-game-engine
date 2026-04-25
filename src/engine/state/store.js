@@ -5,16 +5,17 @@ const entitySlice = createSlice({
   name: "entities",
   initialState: {
     player: {
-      x: 50,
-      y: 50,
+      x: 0,
+      y: 0,
       dx: 0,
       dy: 0,
       speed: 2,
       collided: false,
     },
+
     enemy: {
-      x: 300,
-      y: 200,
+      x: 0,
+      y: 0,
       direction: 1,
       speed: 1.5,
       collided: false,
@@ -30,9 +31,10 @@ const entitySlice = createSlice({
         state.player.dy = action.payload.dy;
       }
     },
-    updatePosition: (state) => {
-      state.player.x += state.player.speed * state.player.dx;
-      state.player.y += state.player.speed * state.player.dy;
+    updatePosition: (state, action) => {
+      const deltaTime = action.payload || 16;
+      state.player.x += state.player.speed * state.player.dx * (deltaTime / 16);
+      state.player.y += state.player.speed * state.player.dy * (deltaTime / 16);
 
       // boundaries (SVG: 600x400, player: 30x30)
 
@@ -44,9 +46,18 @@ const entitySlice = createSlice({
 
       // ENEMY AUTO MOVEMENT (left ↔ right)
 
-      state.enemy.x += state.enemy.speed * state.enemy.direction;
+      state.enemy.x +=
+        state.enemy.speed * state.enemy.direction * (deltaTime / 16);
 
-      if (state.enemy.x < 0 || state.enemy.x > 570) {
+      // boundary clamp + direction flip
+
+      if (state.enemy.x < 0) {
+        state.enemy.x = 0;
+        state.enemy.direction *= -1;
+      }
+
+      if (state.enemy.x > 570) {
+        state.enemy.x = 570;
         state.enemy.direction *= -1;
       }
 
@@ -69,11 +80,23 @@ const entitySlice = createSlice({
         state.enemy.collided = collision;
       }
     },
+    loadLevel: (state, action) => {
+      const level = action.payload;
+
+      state.player.x = level.player.x;
+      state.player.y = level.player.y;
+      state.player.speed = level.player.speed;
+
+      state.enemy.x = level.enemy.x;
+      state.enemy.y = level.enemy.y;
+      state.enemy.speed = level.enemy.speed;
+      state.enemy.direction = level.enemy.direction;
+    },
   },
 });
 
 // Export actions
-export const { setDirection, updatePosition } = entitySlice.actions;
+export const { setDirection, updatePosition, loadLevel } = entitySlice.actions;
 
 // Create store
 export const store = configureStore({
