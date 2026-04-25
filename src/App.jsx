@@ -1,26 +1,28 @@
 import { useEffect, useState } from "react";
 import { startGameLoop, stopGameLoop } from "./engine/core/gameLoop";
-import { gameState } from "./engine/state/gameState";
 import SvgRenderer from "./engine/rendering/SvgRenderer";
+import { useDispatch } from "react-redux";
+import { setDirection, updatePosition } from "./engine/state/store";
 
 function App() {
   const [, setTick] = useState(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // 🔑 KEY DOWN
     const handleKeyDown = (e) => {
       switch (e.key) {
         case "ArrowRight":
-          gameState.player.dx = 1;
+          dispatch(setDirection({ dx: 1 }));
           break;
         case "ArrowLeft":
-          gameState.player.dx = -1;
+          dispatch(setDirection({ dx: -1 }));
           break;
         case "ArrowUp":
-          gameState.player.dy = -1;
+          dispatch(setDirection({ dy: -1 }));
           break;
         case "ArrowDown":
-          gameState.player.dy = 1;
+          dispatch(setDirection({ dy: 1 }));
           break;
         default:
           break;
@@ -32,11 +34,11 @@ function App() {
       switch (e.key) {
         case "ArrowRight":
         case "ArrowLeft":
-          gameState.player.dx = 0;
+          dispatch(setDirection({ dx: 0 }));
           break;
         case "ArrowUp":
         case "ArrowDown":
-          gameState.player.dy = 0;
+          dispatch(setDirection({ dy: 0 }));
           break;
         default:
           break;
@@ -48,16 +50,7 @@ function App() {
 
     // 🎮 GAME LOOP
     startGameLoop(() => {
-      const p = gameState.player;
-
-      p.x += p.speed * p.dx;
-      p.y += p.speed * p.dy;
-
-      // 🧱 boundaries (SVG: 600x400, player: 30x30)
-      if (p.x < 0) p.x = 0;
-      if (p.x > 570) p.x = 570;
-      if (p.y < 0) p.y = 0;
-      if (p.y > 370) p.y = 370;
+      dispatch(updatePosition());
 
       setTick((t) => t + 1); // force render
     });

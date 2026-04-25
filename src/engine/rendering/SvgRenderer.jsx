@@ -1,10 +1,10 @@
 // src/engine/rendering/SvgRenderer.jsx
 
-import { gameState } from "../state/gameState";
+import { useSelector } from "react-redux";
 
 export default function SvgRenderer() {
   //   console.log("SvgRenderer render");
-  const { x, y } = gameState.player;
+  const player = useSelector((state) => state.entities.player);
 
   return (
     <svg
@@ -13,7 +13,7 @@ export default function SvgRenderer() {
       style={{ border: "1px solid white", background: "#070404" }}
     >
       {/* Player */}
-      <rect x={x} y={y} width="30" height="30" fill="#00eeff" />
+      <rect x={player.x} y={player.y} width="30" height="30" fill="#00eeff" />
     </svg>
   );
 }

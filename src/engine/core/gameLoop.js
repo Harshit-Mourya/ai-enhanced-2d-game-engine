@@ -1,3 +1,5 @@
+// src/engine/core/gameLoop.js
+
 let lastTime = 0;
 let isRunning = false;
 
