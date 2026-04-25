@@ -44,21 +44,16 @@ const entitySlice = createSlice({
       if (state.player.y < 0) state.player.y = 0;
       if (state.player.y > 370) state.player.y = 370;
 
-      // ENEMY AUTO MOVEMENT (left ↔ right)
+      // ENEMY AI: move toward player
 
-      state.enemy.x +=
-        state.enemy.speed * state.enemy.direction * (deltaTime / 16);
+      const dx = state.player.x - state.enemy.x;
+      const dy = state.player.y - state.enemy.y;
 
-      // boundary clamp + direction flip
+      const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (state.enemy.x < 0) {
-        state.enemy.x = 0;
-        state.enemy.direction *= -1;
-      }
-
-      if (state.enemy.x > 570) {
-        state.enemy.x = 570;
-        state.enemy.direction *= -1;
+      if (distance > 1) {
+        state.enemy.x += (dx / distance) * state.enemy.speed * (deltaTime / 16);
+        state.enemy.y += (dy / distance) * state.enemy.speed * (deltaTime / 16);
       }
 
       // PLAYER–ENEMY COLLISION DETECTION
