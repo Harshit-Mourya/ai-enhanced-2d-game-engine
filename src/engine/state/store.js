@@ -19,6 +19,7 @@ const entitySlice = createSlice({
       direction: 1,
       speed: 1.5,
       collided: false,
+      state: "patrol",
     },
   },
   reducers: {
@@ -44,16 +45,35 @@ const entitySlice = createSlice({
       if (state.player.y < 0) state.player.y = 0;
       if (state.player.y > 370) state.player.y = 370;
 
-      // ENEMY AI: move toward player
+      // ENEMY FSM AI
 
       const dx = state.player.x - state.enemy.x;
       const dy = state.player.y - state.enemy.y;
 
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance > 1) {
+      // STATE SWITCHING
+
+      if (distance < 150) {
+        state.enemy.state = "chase";
+      } else {
+        state.enemy.state = "patrol";
+      }
+
+      // STATE EXECUTION
+
+      if (state.enemy.state === "chase") {
         state.enemy.x += (dx / distance) * state.enemy.speed * (deltaTime / 16);
         state.enemy.y += (dy / distance) * state.enemy.speed * (deltaTime / 16);
+      }
+
+      if (state.enemy.state === "patrol") {
+        state.enemy.x +=
+          state.enemy.speed * state.enemy.direction * (deltaTime / 16);
+
+        if (state.enemy.x < 0 || state.enemy.x > 570) {
+          state.enemy.direction *= -1;
+        }
       }
 
       // PLAYER–ENEMY COLLISION DETECTION
