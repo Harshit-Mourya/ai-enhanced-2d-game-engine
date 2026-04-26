@@ -5,58 +5,20 @@ import { useDispatch } from "react-redux";
 import { setDirection } from "./engine/state/store";
 import level1 from "./engine/levels/level1.json";
 import { loadLevel } from "./engine/state/store";
+import { initializeInput } from "./engine/input/inputManager";
 
 function App() {
   const [, setTick] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // 🔑 KEY DOWN
-    const handleKeyDown = (e) => {
-      switch (e.key) {
-        case "ArrowRight":
-          dispatch(setDirection({ dx: 1 }));
-          break;
-        case "ArrowLeft":
-          dispatch(setDirection({ dx: -1 }));
-          break;
-        case "ArrowUp":
-          dispatch(setDirection({ dy: -1 }));
-          break;
-        case "ArrowDown":
-          dispatch(setDirection({ dy: 1 }));
-          break;
-        default:
-          break;
-      }
-    };
+    const cleanupInput = initializeInput(dispatch, setDirection);
 
-    // 🔑 KEY UP
-    const handleKeyUp = (e) => {
-      switch (e.key) {
-        case "ArrowRight":
-        case "ArrowLeft":
-          dispatch(setDirection({ dx: 0 }));
-          break;
-        case "ArrowUp":
-        case "ArrowDown":
-          dispatch(setDirection({ dy: 0 }));
-          break;
-        default:
-          break;
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    // 🎮 GAME LOOP
     dispatch(loadLevel(level1));
     startGameLoop();
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
+      cleanupInput();
       stopGameLoop();
     };
   }, []);
