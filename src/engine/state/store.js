@@ -11,6 +11,7 @@ const entitySlice = createSlice({
       dx: 0,
       dy: 0,
       speed: 2,
+      health: 100,
       collided: false,
     },
 
@@ -63,6 +64,13 @@ const entitySlice = createSlice({
 
         if (collision) {
           state.player.collided = true;
+
+          // apply damage
+          state.player.health -= 0.2 * (deltaTime / 16);
+
+          if (state.player.health < 0) {
+            state.player.health = 0;
+          }
         }
       });
     },

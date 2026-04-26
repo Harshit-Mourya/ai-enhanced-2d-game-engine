@@ -13,6 +13,9 @@ export default function SvgRenderer() {
       style={{ border: "1px solid white", background: "#070404" }}
     >
       {/* Player */}
+      <text x="10" y="20" fill="white" fontSize="14">
+        Health: {Math.round(player.health)}
+      </text>
       <rect
         x={player.x}
         y={player.y}
