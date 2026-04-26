@@ -32,7 +32,13 @@ export default function SvgRenderer() {
           y={enemy.y}
           width="30"
           height="30"
-          fill={enemy.state === "chase" ? "red" : "orange"}
+          fill={
+            enemy.state === "attack"
+              ? "red"
+              : enemy.state === "chase"
+                ? "#ff00ff"
+                : "orange"
+          }
         />
       ))}
     </svg>

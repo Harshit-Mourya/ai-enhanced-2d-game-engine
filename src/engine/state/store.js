@@ -64,13 +64,6 @@ const entitySlice = createSlice({
 
         if (collision) {
           state.player.collided = true;
-
-          // apply damage
-          state.player.health -= 0.2 * (deltaTime / 16);
-
-          if (state.player.health < 0) {
-            state.player.health = 0;
-          }
         }
       });
     },
@@ -89,6 +82,7 @@ const entitySlice = createSlice({
         ...enemy,
         collided: false,
         state: "patrol",
+        lastAttackTime: 0,
       }));
     },
   },

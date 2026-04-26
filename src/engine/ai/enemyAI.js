@@ -5,21 +5,19 @@ export function updateEnemyAI(state, deltaTime) {
 
     const distance = Math.sqrt(dx * dx + dy * dy);
 
-    // FSM state switching
+    // FSM STATE SWITCHING
 
-    if (distance < 150) {
+    if (distance < 40) {
+      enemy.state = "attack";
+    } else if (distance < 150) {
       enemy.state = "chase";
     } else {
       enemy.state = "patrol";
     }
 
-    // FSM execution
+    // FSM EXECUTION
 
-    if (enemy.state === "chase") {
-      enemy.x += (dx / distance) * enemy.speed * (deltaTime / 16);
-
-      enemy.y += (dy / distance) * enemy.speed * (deltaTime / 16);
-    }
+    // PATROL STATE
 
     if (enemy.state === "patrol") {
       enemy.x += enemy.speed * enemy.direction * (deltaTime / 16);
@@ -32,6 +30,36 @@ export function updateEnemyAI(state, deltaTime) {
       if (enemy.x > 570) {
         enemy.x = 570;
         enemy.direction *= -1;
+      }
+    }
+
+    // CHASE STATE
+
+    if (enemy.state === "chase") {
+      enemy.x += (dx / distance) * enemy.speed * (deltaTime / 16);
+
+      enemy.y += (dy / distance) * enemy.speed * (deltaTime / 16);
+    }
+
+    // ATTACK STATE
+
+    if (enemy.state === "attack") {
+      // stop movement automatically (no position update)
+
+      if (!enemy.lastAttackTime) {
+        enemy.lastAttackTime = 0;
+      }
+
+      const attackInterval = enemy.attackCooldown || 800;
+
+      if (Date.now() - enemy.lastAttackTime > attackInterval) {
+        state.player.health -= enemy.attackDamage || 1;
+
+        if (state.player.health < 0) {
+          state.player.health = 0;
+        }
+
+        enemy.lastAttackTime = Date.now();
       }
     }
   });
