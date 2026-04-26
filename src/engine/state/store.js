@@ -14,14 +14,7 @@ const entitySlice = createSlice({
       collided: false,
     },
 
-    enemy: {
-      x: 0,
-      y: 0,
-      direction: 1,
-      speed: 1.5,
-      collided: false,
-      state: "patrol",
-    },
+    enemies: [],
   },
   reducers: {
     setDirection: (state, action) => {
@@ -49,36 +42,46 @@ const entitySlice = createSlice({
       // ENEMY FSM AI
       updateEnemyAI(state, deltaTime);
 
-      // PLAYER–ENEMY COLLISION DETECTION
+      // PLAYER vs ENEMIES collision detection (AABB)
 
-      const playerRight = state.player.x + 30;
-      const playerBottom = state.player.y + 30;
+      state.player.collided = false;
 
-      const enemyRight = state.enemy.x + 30;
-      const enemyBottom = state.enemy.y + 30;
+      state.enemies.forEach((enemy) => {
+        const playerRight = state.player.x + 30;
+        const playerBottom = state.player.y + 30;
 
-      const collision =
-        state.player.x < enemyRight &&
-        playerRight > state.enemy.x &&
-        state.player.y < enemyBottom &&
-        playerBottom > state.enemy.y;
+        const enemyRight = enemy.x + 30;
+        const enemyBottom = enemy.y + 30;
 
-      if (collision) {
-        state.player.collided = collision;
-        state.enemy.collided = collision;
-      }
+        const collision =
+          state.player.x < enemyRight &&
+          playerRight > enemy.x &&
+          state.player.y < enemyBottom &&
+          playerBottom > enemy.y;
+
+        enemy.collided = collision;
+
+        if (collision) {
+          state.player.collided = true;
+        }
+      });
     },
     loadLevel: (state, action) => {
       const level = action.payload;
+
+      // load player
 
       state.player.x = level.player.x;
       state.player.y = level.player.y;
       state.player.speed = level.player.speed;
 
-      state.enemy.x = level.enemy.x;
-      state.enemy.y = level.enemy.y;
-      state.enemy.speed = level.enemy.speed;
-      state.enemy.direction = level.enemy.direction;
+      // load enemies array
+
+      state.enemies = level.enemies.map((enemy) => ({
+        ...enemy,
+        collided: false,
+        state: "patrol",
+      }));
     },
   },
 });
