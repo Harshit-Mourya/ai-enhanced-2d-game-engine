@@ -6,6 +6,8 @@ export default function SvgRenderer() {
   //   console.log("SvgRenderer render");
   const player = useSelector((state) => state.entities.player);
   const enemies = useSelector((state) => state.entities.enemies);
+  const gameStatus = useSelector((state) => state.entities.gameStatus);
+  const survivalTime = useSelector((state) => state.entities.survivalTime);
   return (
     <svg
       width="600"
@@ -15,6 +17,9 @@ export default function SvgRenderer() {
       {/* Player */}
       <text x="10" y="20" fill="white" fontSize="14">
         Health: {Math.round(player.health)}
+      </text>
+      <text x="10" y="40" fill="white" fontSize="14">
+        Survival Time: {survivalTime.toFixed(1)} sec
       </text>
       <rect
         x={player.x}
@@ -41,6 +46,17 @@ export default function SvgRenderer() {
           }
         />
       ))}
+      {gameStatus === "gameOver" && (
+        <>
+          <text x="300" y="180" fill="white" fontSize="32" textAnchor="middle">
+            GAME OVER
+          </text>
+
+          <text x="300" y="220" fill="white" fontSize="16" textAnchor="middle">
+            Press R to Restart
+          </text>
+        </>
+      )}
     </svg>
   );
 }

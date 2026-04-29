@@ -1,4 +1,6 @@
 export function updateEnemyAI(state, deltaTime) {
+  const frameScale = deltaTime / 16.67;
+
   state.enemies.forEach((enemy) => {
     const dx = state.player.x - enemy.x;
     const dy = state.player.y - enemy.y;
@@ -20,7 +22,7 @@ export function updateEnemyAI(state, deltaTime) {
     // PATROL STATE
 
     if (enemy.state === "patrol") {
-      enemy.x += enemy.speed * enemy.direction * (deltaTime / 16);
+      enemy.x += enemy.speed * enemy.direction * frameScale;
 
       if (enemy.x < 0) {
         enemy.x = 0;
@@ -36,9 +38,9 @@ export function updateEnemyAI(state, deltaTime) {
     // CHASE STATE
 
     if (enemy.state === "chase") {
-      enemy.x += (dx / distance) * enemy.speed * (deltaTime / 16);
+      enemy.x += (dx / distance) * enemy.speed * frameScale;
 
-      enemy.y += (dy / distance) * enemy.speed * (deltaTime / 16);
+      enemy.y += (dy / distance) * enemy.speed * frameScale;
     }
 
     // ATTACK STATE

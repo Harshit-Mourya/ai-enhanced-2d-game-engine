@@ -5,6 +5,8 @@ import { updateEnemyAI } from "../ai/enemyAI";
 const entitySlice = createSlice({
   name: "entities",
   initialState: {
+    gameStatus: "playing",
+    survivalTime: 0,
     player: {
       x: 0,
       y: 0,
@@ -28,10 +30,16 @@ const entitySlice = createSlice({
       }
     },
     updatePosition: (state, action) => {
-      const deltaTime = action.payload || 16;
-      state.player.x += state.player.speed * state.player.dx * (deltaTime / 16);
-      state.player.y += state.player.speed * state.player.dy * (deltaTime / 16);
+      if (state.gameStatus === "gameOver") return;
 
+      if (state.gameStatus === "playing") {
+        state.survivalTime += action.payload / 1000;
+      }
+
+      const deltaTime = action.payload;
+
+      state.player.x += state.player.speed * state.player.dx;
+      state.player.y += state.player.speed * state.player.dy;
       // boundaries (SVG: 600x400, player: 30x30)
 
       if (state.player.x < 0) state.player.x = 0;
@@ -66,17 +74,33 @@ const entitySlice = createSlice({
           state.player.collided = true;
         }
       });
+      // GAME OVER CHECK
+
+      if (state.player.health <= 0) {
+        state.player.health = 0;
+
+        state.gameStatus = "gameOver";
+      }
     },
     loadLevel: (state, action) => {
       const level = action.payload;
 
-      // load player
+      // reset game status
+      state.gameStatus = "playing";
+      state.survivalTime = 0;
+
+      // reset player completely
 
       state.player.x = level.player.x;
       state.player.y = level.player.y;
       state.player.speed = level.player.speed;
 
-      // load enemies array
+      state.player.dx = 0; // ⭐ missing
+      state.player.dy = 0; // ⭐ missing
+      state.player.health = 100; // ⭐ missing
+      state.player.collided = false; // ⭐ missing
+
+      // reset enemies
 
       state.enemies = level.enemies.map((enemy) => ({
         ...enemy,
@@ -85,11 +109,15 @@ const entitySlice = createSlice({
         lastAttackTime: 0,
       }));
     },
+    setGameStatus: (state, action) => {
+      state.gameStatus = action.payload;
+    },
   },
 });
 
 // Export actions
-export const { setDirection, updatePosition, loadLevel } = entitySlice.actions;
+export const { setDirection, updatePosition, loadLevel, setGameStatus } =
+  entitySlice.actions;
 
 // Create store
 export const store = configureStore({
