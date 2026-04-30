@@ -4,9 +4,14 @@ import { updateEnemyAI } from "../ai/enemyAI";
 // Entity slice
 const entitySlice = createSlice({
   name: "entities",
+
   initialState: {
     gameStatus: "playing",
+
     survivalTime: 0,
+
+    difficultyLevel: "normal",
+
     player: {
       x: 0,
       y: 0,
@@ -19,7 +24,9 @@ const entitySlice = createSlice({
 
     enemies: [],
   },
+
   reducers: {
+    // PLAYER INPUT DIRECTION
     setDirection: (state, action) => {
       if (action.payload.dx !== undefined) {
         state.player.dx = action.payload.dx;
@@ -29,29 +36,50 @@ const entitySlice = createSlice({
         state.player.dy = action.payload.dy;
       }
     },
+
+    // MAIN GAME UPDATE STEP (runs every engine tick)
     updatePosition: (state, action) => {
       if (state.gameStatus === "gameOver") return;
 
+      // SURVIVAL TIMER + ADAPTIVE DIFFICULTY SYSTEM
+
       if (state.gameStatus === "playing") {
         state.survivalTime += action.payload / 1000;
+
+        // difficulty scaling based on survival time
+
+        if (state.survivalTime > 60) {
+          state.difficultyLevel = "hard";
+        } else if (state.survivalTime > 30) {
+          state.difficultyLevel = "medium";
+        } else {
+          state.difficultyLevel = "normal";
+        }
       }
 
       const deltaTime = action.payload;
 
+      // PLAYER MOVEMENT (fixed timestep compatible)
+
       state.player.x += state.player.speed * state.player.dx;
+
       state.player.y += state.player.speed * state.player.dy;
-      // boundaries (SVG: 600x400, player: 30x30)
+
+      // WORLD BOUNDARIES (SVG: 600x400, player: 30x30)
 
       if (state.player.x < 0) state.player.x = 0;
+
       if (state.player.x > 570) state.player.x = 570;
 
       if (state.player.y < 0) state.player.y = 0;
+
       if (state.player.y > 370) state.player.y = 370;
 
-      // ENEMY FSM AI
+      // ENEMY FSM AI UPDATE
+
       updateEnemyAI(state, deltaTime);
 
-      // PLAYER vs ENEMIES collision detection (AABB)
+      // PLAYER vs ENEMY COLLISION CHECK (AABB)
 
       state.player.collided = false;
 
@@ -74,7 +102,8 @@ const entitySlice = createSlice({
           state.player.collided = true;
         }
       });
-      // GAME OVER CHECK
+
+      // GAME OVER CONDITION
 
       if (state.player.health <= 0) {
         state.player.health = 0;
@@ -82,44 +111,69 @@ const entitySlice = createSlice({
         state.gameStatus = "gameOver";
       }
     },
+
+    // LOAD / RESET LEVEL STATE
     loadLevel: (state, action) => {
       const level = action.payload;
 
-      // reset game status
+      // RESET CORE GAME STATE
+
       state.gameStatus = "playing";
+
       state.survivalTime = 0;
 
-      // reset player completely
+      state.difficultyLevel = "normal";
+
+      // RESET PLAYER
 
       state.player.x = level.player.x;
+
       state.player.y = level.player.y;
+
       state.player.speed = level.player.speed;
 
-      state.player.dx = 0; // ⭐ missing
-      state.player.dy = 0; // ⭐ missing
-      state.player.health = 100; // ⭐ missing
-      state.player.collided = false; // ⭐ missing
+      state.player.dx = 0;
 
-      // reset enemies
+      state.player.dy = 0;
+
+      state.player.health = 100;
+
+      state.player.collided = false;
+
+      // RESET ENEMIES
 
       state.enemies = level.enemies.map((enemy) => ({
         ...enemy,
+
         collided: false,
+
         state: "patrol",
+
         lastAttackTime: 0,
       }));
     },
+
+    // MANUAL GAME STATUS CONTROL
     setGameStatus: (state, action) => {
       state.gameStatus = action.payload;
     },
   },
 });
 
-// Export actions
-export const { setDirection, updatePosition, loadLevel, setGameStatus } =
-  entitySlice.actions;
+// EXPORT ACTIONS
 
-// Create store
+export const {
+  setDirection,
+
+  updatePosition,
+
+  loadLevel,
+
+  setGameStatus,
+} = entitySlice.actions;
+
+// CREATE STORE
+
 export const store = configureStore({
   reducer: {
     entities: entitySlice.reducer,

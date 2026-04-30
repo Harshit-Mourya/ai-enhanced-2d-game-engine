@@ -8,6 +8,9 @@ export default function SvgRenderer() {
   const enemies = useSelector((state) => state.entities.enemies);
   const gameStatus = useSelector((state) => state.entities.gameStatus);
   const survivalTime = useSelector((state) => state.entities.survivalTime);
+  const difficultyLevel = useSelector(
+    (state) => state.entities.difficultyLevel,
+  );
   return (
     <svg
       width="600"
@@ -20,6 +23,9 @@ export default function SvgRenderer() {
       </text>
       <text x="10" y="40" fill="white" fontSize="14">
         Survival Time: {survivalTime.toFixed(1)} sec
+      </text>
+      <text x="10" y="60" fill="white" fontSize="14">
+        Difficulty: {difficultyLevel}
       </text>
       <rect
         x={player.x}
