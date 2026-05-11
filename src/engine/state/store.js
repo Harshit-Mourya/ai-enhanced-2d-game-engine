@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { updateEnemyAI } from "../ai/enemyAI";
-
+import { spawnEnemyWave } from "../ai/spawnSystem";
+import { resolveWallCollision } from "../physics/wallCollision";
 // Entity slice
 const entitySlice = createSlice({
   name: "entities",
@@ -11,6 +12,11 @@ const entitySlice = createSlice({
     survivalTime: 0,
 
     difficultyLevel: "normal",
+
+    lastSpawnTime: 0,
+
+    safeZones: [],
+    walls: [],
 
     player: {
       x: 0,
@@ -28,58 +34,65 @@ const entitySlice = createSlice({
   reducers: {
     // PLAYER INPUT DIRECTION
     setDirection: (state, action) => {
-      if (action.payload.dx !== undefined) {
-        state.player.dx = action.payload.dx;
-      }
+      if (action.payload.dx !== undefined) state.player.dx = action.payload.dx;
 
-      if (action.payload.dy !== undefined) {
-        state.player.dy = action.payload.dy;
-      }
+      if (action.payload.dy !== undefined) state.player.dy = action.payload.dy;
     },
 
     // MAIN GAME UPDATE STEP (runs every engine tick)
     updatePosition: (state, action) => {
       if (state.gameStatus === "gameOver") return;
 
-      // SURVIVAL TIMER + ADAPTIVE DIFFICULTY SYSTEM
+      // ===============================
+      // SURVIVAL TIMER + DIFFICULTY
+      // ===============================
 
-      if (state.gameStatus === "playing") {
-        state.survivalTime += action.payload / 1000;
+      state.survivalTime += action.payload / 1000;
 
-        // difficulty scaling based on survival time
+      if (state.survivalTime > 60) state.difficultyLevel = "hard";
+      else if (state.survivalTime > 30) state.difficultyLevel = "medium";
+      else state.difficultyLevel = "normal";
 
-        if (state.survivalTime > 60) {
-          state.difficultyLevel = "hard";
-        } else if (state.survivalTime > 30) {
-          state.difficultyLevel = "medium";
-        } else {
-          state.difficultyLevel = "normal";
-        }
-      }
-
-      const deltaTime = action.payload;
-
-      // PLAYER MOVEMENT (fixed timestep compatible)
+      // ===============================
+      // PLAYER MOVEMENT
+      // ===============================
 
       state.player.x += state.player.speed * state.player.dx;
 
       state.player.y += state.player.speed * state.player.dy;
 
-      // WORLD BOUNDARIES (SVG: 600x400, player: 30x30)
+      resolveWallCollision(state.player, state.walls);
+
+      // ===============================
+      // WORLD BOUNDARIES
+      // ===============================
 
       if (state.player.x < 0) state.player.x = 0;
 
-      if (state.player.x > 570) state.player.x = 570;
+      if (state.player.x > 970) state.player.x = 970;
 
       if (state.player.y < 0) state.player.y = 0;
 
-      if (state.player.y > 370) state.player.y = 370;
+      if (state.player.y > 670) state.player.y = 670;
 
-      // ENEMY FSM AI UPDATE
+      // ===============================
+      // ENEMY AI UPDATE
+      // ===============================
 
-      updateEnemyAI(state, deltaTime);
+      updateEnemyAI(state, action.payload);
+      state.enemies.forEach((enemy) => {
+        resolveWallCollision(enemy, state.walls);
+      });
 
-      // PLAYER vs ENEMY COLLISION CHECK (AABB)
+      // ===============================
+      // SPAWN SYSTEM UPDATE
+      // ===============================
+
+      spawnEnemyWave(state);
+
+      // ===============================
+      // COLLISION CHECK (PLAYER vs ENEMY)
+      // ===============================
 
       state.player.collided = false;
 
@@ -98,12 +111,12 @@ const entitySlice = createSlice({
 
         enemy.collided = collision;
 
-        if (collision) {
-          state.player.collided = true;
-        }
+        if (collision) state.player.collided = true;
       });
 
+      // ===============================
       // GAME OVER CONDITION
+      // ===============================
 
       if (state.player.health <= 0) {
         state.player.health = 0;
@@ -116,15 +129,28 @@ const entitySlice = createSlice({
     loadLevel: (state, action) => {
       const level = action.payload;
 
+      // ===============================
       // RESET CORE GAME STATE
+      // ===============================
 
       state.gameStatus = "playing";
 
       state.survivalTime = 0;
 
+      state.lastSpawnTime = 0;
+
       state.difficultyLevel = "normal";
 
+      // ===============================
+      // LOAD SAFE ZONES
+      // ===============================
+
+      state.safeZones = level.safeZones || [];
+      state.walls = level.walls || [];
+
+      // ===============================
       // RESET PLAYER
+      // ===============================
 
       state.player.x = level.player.x;
 
@@ -140,7 +166,9 @@ const entitySlice = createSlice({
 
       state.player.collided = false;
 
+      // ===============================
       // RESET ENEMIES
+      // ===============================
 
       state.enemies = level.enemies.map((enemy) => ({
         ...enemy,

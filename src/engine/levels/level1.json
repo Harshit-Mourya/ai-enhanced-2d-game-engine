@@ -1,26 +1,37 @@
 {
+  "arena": {
+    "width": 1000,
+    "height": 700
+  },
+
   "player": {
-    "x": 80,
-    "y": 120,
+    "x": 200,
+    "y": 200,
     "speed": 2
   },
 
+  "walls": [
+    { "x": 400, "y": 250, "width": 200, "height": 20 },
+    { "x": 400, "y": 430, "width": 200, "height": 20 },
+    { "x": 200, "y": 120, "width": 20, "height": 200 },
+    { "x": 780, "y": 380, "width": 20, "height": 200 }
+  ],
+
+  "safeZones": [
+    { "x": 150, "y": 200, "radius": 80 },
+    { "x": 850, "y": 200, "radius": 80 }
+  ],
+
   "enemies": [
     {
-      "x": 350,
-      "y": 200,
+      "x": 100,
+      "y": 100,
       "speed": 1.5,
-      "direction": 1,
+      "enemyClass": "hunter",
       "attackDamage": 1,
-      "attackCooldown": 800
-    },
-    {
-      "x": 150,
-      "y": 280,
-      "speed": 1.2,
-      "direction": -1,
-      "attackDamage": 2,
-      "attackCooldown": 1200
+      "attackCooldown": 800,
+      "detectionRadius": 150,
+      "attackRadius": 40
     }
   ]
 }
