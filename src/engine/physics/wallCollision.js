@@ -2,8 +2,10 @@ export function resolveWallCollision(entity, walls) {
   if (!walls || walls.length === 0) return;
 
   walls.forEach((wall) => {
-    const entityRight = entity.x + 30;
-    const entityBottom = entity.y + 30;
+    const entitySize = 40;
+
+    const entityRight = entity.x + entitySize;
+    const entityBottom = entity.y + entitySize;
 
     const wallRight = wall.x + wall.width;
     const wallBottom = wall.y + wall.height;

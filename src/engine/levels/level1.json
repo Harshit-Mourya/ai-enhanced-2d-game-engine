@@ -5,17 +5,19 @@
   },
 
   "player": {
-    "x": 200,
-    "y": 200,
-    "speed": 2
+    "x": 1255,
+    "y": 10,
+
+    "speed": 2,
+
+    "health": 100,
+
+    "projectileSpeed": 3,
+    "projectileDamage": 1,
+    "projectileType": "comet"
   },
 
-  "walls": [
-    { "x": 400, "y": 250, "width": 200, "height": 20 },
-    { "x": 400, "y": 430, "width": 200, "height": 20 },
-    { "x": 200, "y": 120, "width": 20, "height": 200 },
-    { "x": 780, "y": 380, "width": 20, "height": 200 }
-  ],
+  "walls": [],
 
   "safeZones": [
     { "x": 150, "y": 200, "radius": 80 },
@@ -24,14 +26,42 @@
 
   "enemies": [
     {
-      "x": 100,
-      "y": 100,
+      "x": 1500,
+      "y": 40,
+
+      "health": 5,
+
       "speed": 1.5,
-      "enemyClass": "hunter",
-      "attackDamage": 1,
+
+      "enemyClass": "scout",
+
+      "detectionRadius": 100,
+
       "attackCooldown": 800,
-      "detectionRadius": 150,
-      "attackRadius": 40
+
+      "projectileSpeed": 5,
+      "projectileDamage": 1,
+      "projectileType": "meteor"
+    },
+
+    {
+      "x": 1530,
+      "y": 40,
+
+      "health": 10,
+
+      "speed": 1.5,
+
+      "enemyClass": "hunter",
+
+      "detectionRadius": 100,
+
+      "attackCooldown": 600,
+
+      "projectileSpeed": 7,
+      "projectileDamage": 2,
+      "projectileType": "meteor"
     }
-  ]
+  ],
+  "exitGate": null
 }

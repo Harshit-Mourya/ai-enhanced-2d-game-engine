@@ -6,8 +6,8 @@ export default function DetectionLayer({ enemies }) {
       {enemies.map((enemy) => (
         <circle
           key={`detect-${enemy.id}`}
-          cx={enemy.x}
-          cy={enemy.y}
+          cx={enemy.x + 20}
+          cy={enemy.y + 20}
           r={enemy.detectionRadius}
           stroke="#facc15"
           strokeDasharray="4"

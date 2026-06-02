@@ -78,7 +78,7 @@ function createScoutEnemy(x, y) {
 
     x,
     y,
-
+    health: 3,
     speed: 2.2,
 
     detectionRadius: 170,
@@ -105,7 +105,7 @@ function createHunterEnemy(x, y) {
 
     x,
     y,
-
+    health: 5,
     speed: 1.6,
 
     detectionRadius: 150,
@@ -132,7 +132,7 @@ function createTankEnemy(x, y) {
 
     x,
     y,
-
+    health: 8,
     speed: 1.0,
 
     detectionRadius: 120,
