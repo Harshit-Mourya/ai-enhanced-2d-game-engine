@@ -2,7 +2,7 @@ export const SCREENS = {
   MAIN_MENU: "MAIN_MENU",
   GAME: "GAME",
   SETTINGS: "SETTINGS",
-  LOGIN: "LOGIN",
+  AUTH: "AUTH",
 };
 
 export const GAME_STATES = {

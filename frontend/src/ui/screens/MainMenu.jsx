@@ -1,4 +1,4 @@
-export default function MainMenu({ onStartGame, onSettings, onLogin }) {
+export default function MainMenu({ onStartGame, onSettings, onAuth }) {
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-[radial-gradient(circle_at_top,_#0f172a,_#020617_70%)] text-white">
       <h1 className="mb-3 text-6xl font-extrabold text-sky-400 drop-shadow-[0_0_20px_#38bdf8]">
@@ -18,10 +18,10 @@ export default function MainMenu({ onStartGame, onSettings, onLogin }) {
         </button>
 
         <button
-          onClick={onLogin}
+          onClick={onAuth}
           className="rounded-xl bg-sky-500 px-6 py-4 text-lg font-bold tracking-wide shadow-[0_0_15px_rgba(14,165,233,0.5)] transition hover:scale-105 hover:bg-sky-400"
         >
-          LOGIN
+          ACCOUNT
         </button>
 
         <button
