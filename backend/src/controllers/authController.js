@@ -5,6 +5,7 @@ import User from "../models/User.js";
 export const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    console.log("Signup request received:", { username, email, password });
 
     const existingUser = await User.findOne({
       email,
@@ -25,6 +26,8 @@ export const signup = async (req, res) => {
       password: hashedPassword,
     });
 
+    console.log("User created:", user);
+
     res.status(201).json({
       success: true,
       message: "User created successfully!",
@@ -43,6 +46,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("Login request received:", { email, password });
 
     const user = await User.findOne({
       email,
@@ -73,6 +77,15 @@ export const login = async (req, res) => {
         expiresIn: "7d",
       },
     );
+
+    console.log("Login successful:", {
+      token,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+      },
+    });
 
     res.status(200).json({
       success: true,

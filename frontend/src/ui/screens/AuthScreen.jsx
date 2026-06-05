@@ -10,7 +10,10 @@ export default function AuthScreen({ onBack, onAuthSuccess }) {
     <div className="flex h-screen items-center justify-center bg-slate-950 px-4 text-white">
       <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl transition-all duration-300">
         {isLogin ? (
-          <LoginForm onSwitch={() => setIsLogin(false)} />
+          <LoginForm
+            onSwitch={() => setIsLogin(false)}
+            onSuccess={onAuthSuccess}
+          />
         ) : (
           <SignupForm onSwitch={() => setIsLogin(true)} />
         )}
