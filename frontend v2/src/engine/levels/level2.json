@@ -1,0 +1,1038 @@
+{
+  "id": 2,
+  "name": "Asteroid Base Grid",
+  "theme": "asteroid-belt",
+  "arena": {
+    "width": 2600,
+    "height": 1900
+  },
+  "player": {
+    "x": 130,
+    "y": 130,
+    "speed": 2.9,
+    "health": 100,
+    "maxHealth": 100,
+    "projectileSpeed": 6.5,
+    "projectileDamage": 3.5,
+    "projectileType": "comet"
+  },
+  "walls": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 2600,
+      "height": 16
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 1900
+    },
+    {
+      "x": 0,
+      "y": 1884,
+      "width": 2600,
+      "height": 16
+    },
+    {
+      "x": 2584,
+      "y": 0,
+      "width": 16,
+      "height": 1900
+    },
+    {
+      "x": 136,
+      "y": 438,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 136,
+      "y": 1169,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 281,
+      "y": 0,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 281,
+      "y": 438,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 281,
+      "y": 1315,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 425,
+      "y": 146,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 425,
+      "y": 438,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 425,
+      "y": 585,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 425,
+      "y": 1023,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 425,
+      "y": 1315,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 570,
+      "y": 0,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 570,
+      "y": 146,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 570,
+      "y": 585,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 570,
+      "y": 1462,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 714,
+      "y": 1315,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 714,
+      "y": 1608,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 859,
+      "y": 1315,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1003,
+      "y": 438,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1003,
+      "y": 877,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1003,
+      "y": 1169,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1003,
+      "y": 1608,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1148,
+      "y": 146,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1148,
+      "y": 585,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1148,
+      "y": 731,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1292,
+      "y": 0,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1292,
+      "y": 438,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1292,
+      "y": 877,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1292,
+      "y": 1608,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1436,
+      "y": 292,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1436,
+      "y": 585,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1436,
+      "y": 731,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1436,
+      "y": 1462,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1436,
+      "y": 1608,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1581,
+      "y": 1608,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1725,
+      "y": 731,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1725,
+      "y": 877,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 1870,
+      "y": 1023,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2014,
+      "y": 0,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2014,
+      "y": 585,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2014,
+      "y": 731,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2014,
+      "y": 877,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2014,
+      "y": 1023,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2014,
+      "y": 1169,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2014,
+      "y": 1315,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2159,
+      "y": 438,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2159,
+      "y": 1023,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2159,
+      "y": 1169,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2303,
+      "y": 438,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2303,
+      "y": 1169,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2303,
+      "y": 1315,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2303,
+      "y": 1754,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2448,
+      "y": 146,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2448,
+      "y": 292,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 2448,
+      "y": 877,
+      "width": 16,
+      "height": 154
+    },
+    {
+      "x": 0,
+      "y": 1161,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 144,
+      "y": 723,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 144,
+      "y": 1454,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 289,
+      "y": 723,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 289,
+      "y": 1015,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 289,
+      "y": 1161,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 433,
+      "y": 869,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 433,
+      "y": 1015,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 433,
+      "y": 1746,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 578,
+      "y": 430,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 578,
+      "y": 869,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 578,
+      "y": 1600,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 578,
+      "y": 1746,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 722,
+      "y": 284,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 722,
+      "y": 1600,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 867,
+      "y": 138,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 867,
+      "y": 1015,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 867,
+      "y": 1454,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1011,
+      "y": 430,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1011,
+      "y": 1015,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1011,
+      "y": 1307,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1011,
+      "y": 1600,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1011,
+      "y": 1746,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1156,
+      "y": 284,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1156,
+      "y": 430,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1156,
+      "y": 577,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1156,
+      "y": 1161,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1300,
+      "y": 138,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1300,
+      "y": 284,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1300,
+      "y": 723,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1300,
+      "y": 1015,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1300,
+      "y": 1307,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1444,
+      "y": 284,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1444,
+      "y": 723,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1589,
+      "y": 284,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1589,
+      "y": 430,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1589,
+      "y": 869,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1589,
+      "y": 1015,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1589,
+      "y": 1746,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1733,
+      "y": 430,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1733,
+      "y": 869,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1733,
+      "y": 1746,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1878,
+      "y": 430,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1878,
+      "y": 723,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 1878,
+      "y": 1746,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2022,
+      "y": 138,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2022,
+      "y": 577,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2022,
+      "y": 869,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2022,
+      "y": 1454,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2167,
+      "y": 577,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2167,
+      "y": 723,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2167,
+      "y": 1454,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2167,
+      "y": 1600,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2311,
+      "y": 723,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2311,
+      "y": 1015,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2311,
+      "y": 1307,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2311,
+      "y": 1600,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2456,
+      "y": 723,
+      "width": 152,
+      "height": 16
+    },
+    {
+      "x": 2456,
+      "y": 1454,
+      "width": 152,
+      "height": 16
+    }
+  ],
+  "safeZones": [
+    {
+      "id": "sz1",
+      "x": 750,
+      "y": 600,
+      "radius": 100,
+      "name": "Gamma Dome"
+    },
+    {
+      "id": "sz2",
+      "x": 1850,
+      "y": 1350,
+      "radius": 100,
+      "name": "Delta Station"
+    }
+  ],
+  "pickups": [
+    {
+      "id": "pc1",
+      "x": 300,
+      "y": 400,
+      "type": "plasma-cell",
+      "name": "Plasma Cannon Module"
+    },
+    {
+      "id": "qc1",
+      "x": 1000,
+      "y": 200,
+      "type": "quantum-crystal",
+      "name": "Quantum Core Crystal"
+    },
+    {
+      "id": "ar1",
+      "x": 1500,
+      "y": 200,
+      "type": "ancient-artifact",
+      "name": "Alien Relic Artifact"
+    },
+    {
+      "id": "rd1",
+      "x": 2100,
+      "y": 500,
+      "type": "research-data",
+      "name": "Observatory Research Module"
+    },
+    {
+      "id": "ec1",
+      "x": 850,
+      "y": 1250,
+      "type": "energy-core",
+      "name": "Hyper-Flux Energy Core"
+    },
+    {
+      "id": "pc2",
+      "x": 1300,
+      "y": 1250,
+      "type": "plasma-cell",
+      "name": "Plasma Cannon Module"
+    },
+    {
+      "id": "qc2",
+      "x": 1750,
+      "y": 1650,
+      "type": "quantum-crystal",
+      "name": "Quantum Core Crystal"
+    },
+    {
+      "id": "ar2",
+      "x": 450,
+      "y": 1600,
+      "type": "ancient-artifact",
+      "name": "Alien Relic Artifact"
+    },
+    {
+      "id": "hp1",
+      "x": 180,
+      "y": 800,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp2",
+      "x": 900,
+      "y": 350,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp3",
+      "x": 1450,
+      "y": 550,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp4",
+      "x": 250,
+      "y": 1650,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp5",
+      "x": 1500,
+      "y": 1650,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp6",
+      "x": 2100,
+      "y": 1100,
+      "type": "health",
+      "amount": 25
+    }
+  ],
+  "enemies": [
+    {
+      "id": "e1",
+      "x": 250,
+      "y": 380,
+      "health": 10,
+      "maxHealth": 10,
+      "speed": 1.8,
+      "enemyClass": "scout",
+      "detectionRadius": 250,
+      "attackRadius": 170,
+      "attackCooldown": 800,
+      "projectileSpeed": 5,
+      "projectileDamage": 12,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e2",
+      "x": 550,
+      "y": 250,
+      "health": 10,
+      "maxHealth": 10,
+      "speed": 1.8,
+      "enemyClass": "scout",
+      "detectionRadius": 250,
+      "attackRadius": 170,
+      "attackCooldown": 800,
+      "projectileSpeed": 5,
+      "projectileDamage": 12,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e3",
+      "x": 1050,
+      "y": 350,
+      "health": 14,
+      "maxHealth": 14,
+      "speed": 1.6,
+      "enemyClass": "hunter",
+      "detectionRadius": 270,
+      "attackRadius": 190,
+      "attackCooldown": 700,
+      "projectileSpeed": 6,
+      "projectileDamage": 16,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e4",
+      "x": 1450,
+      "y": 200,
+      "health": 14,
+      "maxHealth": 14,
+      "speed": 1.5,
+      "enemyClass": "hunter",
+      "detectionRadius": 270,
+      "attackRadius": 190,
+      "attackCooldown": 700,
+      "projectileSpeed": 6,
+      "projectileDamage": 16,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e5",
+      "x": 1900,
+      "y": 300,
+      "health": 16,
+      "maxHealth": 16,
+      "speed": 1.4,
+      "enemyClass": "hunter",
+      "detectionRadius": 280,
+      "attackRadius": 200,
+      "attackCooldown": 650,
+      "projectileSpeed": 6.5,
+      "projectileDamage": 18,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e6",
+      "x": 2350,
+      "y": 400,
+      "health": 25,
+      "maxHealth": 25,
+      "speed": 1.1,
+      "enemyClass": "tank",
+      "detectionRadius": 290,
+      "attackRadius": 210,
+      "attackCooldown": 950,
+      "projectileSpeed": 5,
+      "projectileDamage": 28,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e7",
+      "x": 750,
+      "y": 1000,
+      "health": 12,
+      "maxHealth": 12,
+      "speed": 1.7,
+      "enemyClass": "scout",
+      "detectionRadius": 260,
+      "attackRadius": 180,
+      "attackCooldown": 750,
+      "projectileSpeed": 5.5,
+      "projectileDamage": 14,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e8",
+      "x": 1250,
+      "y": 1200,
+      "health": 15,
+      "maxHealth": 15,
+      "speed": 1.5,
+      "enemyClass": "hunter",
+      "detectionRadius": 270,
+      "attackRadius": 190,
+      "attackCooldown": 700,
+      "projectileSpeed": 6,
+      "projectileDamage": 17,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e9",
+      "x": 1500,
+      "y": 1000,
+      "health": 15,
+      "maxHealth": 15,
+      "speed": 1.5,
+      "enemyClass": "hunter",
+      "detectionRadius": 270,
+      "attackRadius": 190,
+      "attackCooldown": 700,
+      "projectileSpeed": 6,
+      "projectileDamage": 17,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e10",
+      "x": 1050,
+      "y": 1650,
+      "health": 15,
+      "maxHealth": 15,
+      "speed": 1.5,
+      "enemyClass": "hunter",
+      "detectionRadius": 270,
+      "attackRadius": 190,
+      "attackCooldown": 700,
+      "projectileSpeed": 6,
+      "projectileDamage": 17,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e11",
+      "x": 1750,
+      "y": 1600,
+      "health": 18,
+      "maxHealth": 18,
+      "speed": 1.4,
+      "enemyClass": "hunter",
+      "detectionRadius": 280,
+      "attackRadius": 200,
+      "attackCooldown": 650,
+      "projectileSpeed": 6.5,
+      "projectileDamage": 18,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e12",
+      "x": 2200,
+      "y": 1650,
+      "health": 28,
+      "maxHealth": 28,
+      "speed": 1,
+      "enemyClass": "tank",
+      "detectionRadius": 300,
+      "attackRadius": 220,
+      "attackCooldown": 1000,
+      "projectileSpeed": 5,
+      "projectileDamage": 30,
+      "projectileType": "meteor"
+    }
+  ],
+  "observatory": {
+    "x": 2250,
+    "y": 250,
+    "width": 100,
+    "height": 100,
+    "name": "Asteroid Observatory Hub",
+    "status": "unactivated",
+    "progress": 0,
+    "activated": false
+  },
+  "exitGate": {
+    "x": 2350,
+    "y": 1680,
+    "width": 95,
+    "height": 95,
+    "name": "Asteroid Jump Portal"
+  }
+}

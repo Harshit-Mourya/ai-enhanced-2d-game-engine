@@ -1,0 +1,1384 @@
+{
+  "id": 3,
+  "name": "Quantum Void Nebula",
+  "theme": "void-nebula",
+  "arena": {
+    "width": 3000,
+    "height": 2200
+  },
+  "player": {
+    "x": 140,
+    "y": 140,
+    "speed": 3.1,
+    "health": 100,
+    "maxHealth": 100,
+    "projectileSpeed": 7,
+    "projectileDamage": 4,
+    "projectileType": "comet"
+  },
+  "walls": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 3000,
+      "height": 16
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 2200
+    },
+    {
+      "x": 0,
+      "y": 2184,
+      "width": 3000,
+      "height": 16
+    },
+    {
+      "x": 2984,
+      "y": 0,
+      "width": 16,
+      "height": 2200
+    },
+    {
+      "x": 128,
+      "y": 1100,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 128,
+      "y": 1238,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 128,
+      "y": 1650,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 128,
+      "y": 1788,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 265,
+      "y": 550,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 265,
+      "y": 1238,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 265,
+      "y": 1925,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 401,
+      "y": 138,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 401,
+      "y": 825,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 401,
+      "y": 963,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 401,
+      "y": 1238,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 401,
+      "y": 1375,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 537,
+      "y": 275,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 537,
+      "y": 688,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 537,
+      "y": 963,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 537,
+      "y": 1513,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 537,
+      "y": 1788,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 674,
+      "y": 138,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 674,
+      "y": 275,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 674,
+      "y": 413,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 674,
+      "y": 550,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 674,
+      "y": 688,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 810,
+      "y": 0,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 810,
+      "y": 963,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 810,
+      "y": 1513,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 947,
+      "y": 275,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 947,
+      "y": 1100,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 947,
+      "y": 1650,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 947,
+      "y": 1788,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1083,
+      "y": 825,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1083,
+      "y": 1513,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1083,
+      "y": 1788,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1083,
+      "y": 1925,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1219,
+      "y": 413,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1219,
+      "y": 1238,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1219,
+      "y": 1375,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1219,
+      "y": 1513,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1219,
+      "y": 1650,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1356,
+      "y": 138,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1356,
+      "y": 550,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1356,
+      "y": 688,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1356,
+      "y": 963,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1356,
+      "y": 1100,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1492,
+      "y": 825,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1492,
+      "y": 963,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1492,
+      "y": 1925,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1628,
+      "y": 688,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1628,
+      "y": 1100,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1628,
+      "y": 1238,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1765,
+      "y": 413,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1765,
+      "y": 550,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1765,
+      "y": 963,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1765,
+      "y": 1375,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1901,
+      "y": 138,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1901,
+      "y": 275,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1901,
+      "y": 550,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1901,
+      "y": 1375,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 1901,
+      "y": 2063,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2037,
+      "y": 825,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2037,
+      "y": 1238,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2174,
+      "y": 138,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2174,
+      "y": 275,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2174,
+      "y": 1100,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2174,
+      "y": 1650,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2310,
+      "y": 413,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2310,
+      "y": 550,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2310,
+      "y": 688,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2310,
+      "y": 1925,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2447,
+      "y": 0,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2447,
+      "y": 413,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2447,
+      "y": 1513,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2447,
+      "y": 1650,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2583,
+      "y": 963,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2583,
+      "y": 1925,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2719,
+      "y": 2063,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2856,
+      "y": 275,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2856,
+      "y": 413,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 2856,
+      "y": 1100,
+      "width": 16,
+      "height": 146
+    },
+    {
+      "x": 0,
+      "y": 680,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 0,
+      "y": 2055,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 136,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 136,
+      "y": 1092,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 136,
+      "y": 1917,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 273,
+      "y": 680,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 273,
+      "y": 1505,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 273,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 273,
+      "y": 1780,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 409,
+      "y": 405,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 409,
+      "y": 542,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 409,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 409,
+      "y": 1780,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 409,
+      "y": 2055,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 545,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 545,
+      "y": 1367,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 545,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 545,
+      "y": 1780,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 545,
+      "y": 2055,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 682,
+      "y": 405,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 682,
+      "y": 955,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 682,
+      "y": 1230,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 682,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 682,
+      "y": 1780,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 682,
+      "y": 1917,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 818,
+      "y": 405,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 818,
+      "y": 955,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 818,
+      "y": 1367,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 818,
+      "y": 1780,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 818,
+      "y": 2055,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 955,
+      "y": 405,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 955,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 955,
+      "y": 1092,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 955,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1091,
+      "y": 1092,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1091,
+      "y": 1780,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1091,
+      "y": 2055,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1227,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1227,
+      "y": 2055,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1364,
+      "y": 542,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1364,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1364,
+      "y": 1780,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1364,
+      "y": 2055,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1500,
+      "y": 405,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1500,
+      "y": 542,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1500,
+      "y": 680,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1500,
+      "y": 955,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1500,
+      "y": 1917,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1636,
+      "y": 267,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1636,
+      "y": 405,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1636,
+      "y": 680,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1636,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1636,
+      "y": 1917,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1773,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1773,
+      "y": 1230,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1773,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1909,
+      "y": 130,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1909,
+      "y": 405,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1909,
+      "y": 1092,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1909,
+      "y": 1505,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 1909,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2045,
+      "y": 267,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2045,
+      "y": 955,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2045,
+      "y": 1367,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2045,
+      "y": 1505,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2182,
+      "y": 1367,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2182,
+      "y": 1505,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2182,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2318,
+      "y": 267,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2318,
+      "y": 955,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2318,
+      "y": 1367,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2318,
+      "y": 1780,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2318,
+      "y": 1917,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2455,
+      "y": 267,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2455,
+      "y": 405,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2455,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2591,
+      "y": 680,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2591,
+      "y": 1367,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2591,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2727,
+      "y": 130,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2727,
+      "y": 680,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2727,
+      "y": 817,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2727,
+      "y": 955,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2727,
+      "y": 1092,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2727,
+      "y": 1367,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2727,
+      "y": 1505,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2727,
+      "y": 1642,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2864,
+      "y": 955,
+      "width": 144,
+      "height": 16
+    },
+    {
+      "x": 2864,
+      "y": 1505,
+      "width": 144,
+      "height": 16
+    }
+  ],
+  "safeZones": [
+    {
+      "id": "sz1",
+      "x": 950,
+      "y": 650,
+      "radius": 110,
+      "name": "Epsilon Refuge"
+    },
+    {
+      "id": "sz2",
+      "x": 2100,
+      "y": 650,
+      "radius": 110,
+      "name": "Zeta Outpost"
+    },
+    {
+      "id": "sz3",
+      "x": 1500,
+      "y": 1550,
+      "radius": 110,
+      "name": "Omega Core"
+    }
+  ],
+  "pickups": [
+    {
+      "id": "pc1",
+      "x": 300,
+      "y": 400,
+      "type": "plasma-cell",
+      "name": "Plasma Cannon Module"
+    },
+    {
+      "id": "qc1",
+      "x": 1250,
+      "y": 200,
+      "type": "quantum-crystal",
+      "name": "Quantum Core Crystal"
+    },
+    {
+      "id": "ar1",
+      "x": 1700,
+      "y": 200,
+      "type": "ancient-artifact",
+      "name": "Alien Relic Artifact"
+    },
+    {
+      "id": "rd1",
+      "x": 2550,
+      "y": 550,
+      "type": "research-data",
+      "name": "Observatory Research Module"
+    },
+    {
+      "id": "ec1",
+      "x": 950,
+      "y": 1350,
+      "type": "energy-core",
+      "name": "Hyper-Flux Energy Core"
+    },
+    {
+      "id": "pc2",
+      "x": 1800,
+      "y": 1350,
+      "type": "plasma-cell",
+      "name": "Plasma Cannon Module"
+    },
+    {
+      "id": "qc2",
+      "x": 2000,
+      "y": 1900,
+      "type": "quantum-crystal",
+      "name": "Quantum Core Crystal"
+    },
+    {
+      "id": "ar2",
+      "x": 500,
+      "y": 1800,
+      "type": "ancient-artifact",
+      "name": "Alien Relic Artifact"
+    },
+    {
+      "id": "hp1",
+      "x": 200,
+      "y": 850,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp2",
+      "x": 1450,
+      "y": 450,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp3",
+      "x": 450,
+      "y": 1850,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp4",
+      "x": 1350,
+      "y": 1850,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp5",
+      "x": 2300,
+      "y": 1850,
+      "type": "health",
+      "amount": 25
+    },
+    {
+      "id": "hp6",
+      "x": 2300,
+      "y": 1100,
+      "type": "health",
+      "amount": 25
+    }
+  ],
+  "enemies": [
+    {
+      "id": "e1",
+      "x": 250,
+      "y": 400,
+      "health": 12,
+      "maxHealth": 12,
+      "speed": 1.9,
+      "enemyClass": "scout",
+      "detectionRadius": 260,
+      "attackRadius": 180,
+      "attackCooldown": 750,
+      "projectileSpeed": 6,
+      "projectileDamage": 15,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e2",
+      "x": 500,
+      "y": 300,
+      "health": 12,
+      "maxHealth": 12,
+      "speed": 1.9,
+      "enemyClass": "scout",
+      "detectionRadius": 260,
+      "attackRadius": 180,
+      "attackCooldown": 750,
+      "projectileSpeed": 6,
+      "projectileDamage": 15,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e3",
+      "x": 1250,
+      "y": 400,
+      "health": 16,
+      "maxHealth": 16,
+      "speed": 1.7,
+      "enemyClass": "hunter",
+      "detectionRadius": 280,
+      "attackRadius": 200,
+      "attackCooldown": 650,
+      "projectileSpeed": 6.5,
+      "projectileDamage": 18,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e4",
+      "x": 1650,
+      "y": 200,
+      "health": 16,
+      "maxHealth": 16,
+      "speed": 1.7,
+      "enemyClass": "hunter",
+      "detectionRadius": 280,
+      "attackRadius": 200,
+      "attackCooldown": 650,
+      "projectileSpeed": 6.5,
+      "projectileDamage": 18,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e5",
+      "x": 2200,
+      "y": 350,
+      "health": 20,
+      "maxHealth": 20,
+      "speed": 1.5,
+      "enemyClass": "hunter",
+      "detectionRadius": 290,
+      "attackRadius": 210,
+      "attackCooldown": 600,
+      "projectileSpeed": 7,
+      "projectileDamage": 22,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e6",
+      "x": 2700,
+      "y": 450,
+      "health": 32,
+      "maxHealth": 32,
+      "speed": 1.2,
+      "enemyClass": "tank",
+      "detectionRadius": 300,
+      "attackRadius": 220,
+      "attackCooldown": 900,
+      "projectileSpeed": 5.5,
+      "projectileDamage": 32,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e7",
+      "x": 850,
+      "y": 1150,
+      "health": 15,
+      "maxHealth": 15,
+      "speed": 1.8,
+      "enemyClass": "scout",
+      "detectionRadius": 270,
+      "attackRadius": 190,
+      "attackCooldown": 700,
+      "projectileSpeed": 6,
+      "projectileDamage": 16,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e8",
+      "x": 980,
+      "y": 1350,
+      "health": 18,
+      "maxHealth": 18,
+      "speed": 1.6,
+      "enemyClass": "hunter",
+      "detectionRadius": 280,
+      "attackRadius": 200,
+      "attackCooldown": 650,
+      "projectileSpeed": 6.5,
+      "projectileDamage": 20,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e9",
+      "x": 1700,
+      "y": 1150,
+      "health": 18,
+      "maxHealth": 18,
+      "speed": 1.6,
+      "enemyClass": "hunter",
+      "detectionRadius": 280,
+      "attackRadius": 200,
+      "attackCooldown": 650,
+      "projectileSpeed": 6.5,
+      "projectileDamage": 20,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e10",
+      "x": 2450,
+      "y": 1150,
+      "health": 22,
+      "maxHealth": 22,
+      "speed": 1.4,
+      "enemyClass": "hunter",
+      "detectionRadius": 290,
+      "attackRadius": 210,
+      "attackCooldown": 600,
+      "projectileSpeed": 7,
+      "projectileDamage": 24,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e11",
+      "x": 1250,
+      "y": 1900,
+      "health": 20,
+      "maxHealth": 20,
+      "speed": 1.5,
+      "enemyClass": "hunter",
+      "detectionRadius": 280,
+      "attackRadius": 200,
+      "attackCooldown": 650,
+      "projectileSpeed": 6.5,
+      "projectileDamage": 22,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e12",
+      "x": 2000,
+      "y": 1880,
+      "health": 20,
+      "maxHealth": 20,
+      "speed": 1.6,
+      "enemyClass": "hunter",
+      "detectionRadius": 280,
+      "attackRadius": 200,
+      "attackCooldown": 650,
+      "projectileSpeed": 6.5,
+      "projectileDamage": 20,
+      "projectileType": "meteor"
+    },
+    {
+      "id": "e13",
+      "x": 2600,
+      "y": 1900,
+      "health": 36,
+      "maxHealth": 36,
+      "speed": 1.1,
+      "enemyClass": "tank",
+      "detectionRadius": 310,
+      "attackRadius": 230,
+      "attackCooldown": 950,
+      "projectileSpeed": 5.5,
+      "projectileDamage": 35,
+      "projectileType": "meteor"
+    }
+  ],
+  "observatory": {
+    "x": 2650,
+    "y": 300,
+    "width": 110,
+    "height": 110,
+    "name": "Quantum Core Observatory",
+    "status": "unactivated",
+    "progress": 0,
+    "activated": false
+  },
+  "exitGate": {
+    "x": 2750,
+    "y": 1950,
+    "width": 100,
+    "height": 100,
+    "name": "Quantum Singularity Gate"
+  }
+}

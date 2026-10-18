@@ -5,7 +5,7 @@ import User from "../models/User.js";
 export const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    console.log("Signup request received:", { username, email, password });
+    console.log("Signup request received:", { username, email });
 
     const existingUser = await User.findOne({
       email,
@@ -46,7 +46,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log("Login request received:", { email, password });
+    console.log("Login request received:", { email });
 
     const user = await User.findOne({
       email,
@@ -79,7 +79,6 @@ export const login = async (req, res) => {
     );
 
     console.log("Login successful:", {
-      token,
       user: {
         id: user._id,
         username: user.username,

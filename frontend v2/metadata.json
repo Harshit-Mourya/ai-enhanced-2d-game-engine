@@ -1,0 +1,6 @@
+{
+  "name": "Adaptive Maze Escape - AI 2D Game Engine",
+  "description": "An AI-enhanced real-time 2D space survival game engine with maze navigation, A* pathfinding, adaptive difficulty, Dexie IndexedDB persistence, and interactive gameplay.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

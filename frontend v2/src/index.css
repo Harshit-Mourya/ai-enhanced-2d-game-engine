@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+  transform-origin: center;
+}
+
+/* Global reset */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #020617;
+  color: #f8fafc;
+  overflow: hidden;
+}
