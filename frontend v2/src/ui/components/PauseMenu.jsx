@@ -5,7 +5,7 @@ export default function PauseMenu({ isPaused, onResume, onRestart, onExit }) {
 
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-black/80 backdrop-blur-md z-50 select-none">
-      <div className="w-[360px] rounded-3xl border border-sky-500/40 bg-slate-950/90 p-8 text-center shadow-[0_0_40px_rgba(14,165,233,0.3)]">
+      <div className="w-90 rounded-3xl border border-sky-500/40 bg-slate-950/90 p-8 text-center shadow-[0_0_40px_rgba(14,165,233,0.3)]">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-500/20 border border-sky-500/40 text-sky-400">
           <Pause className="h-8 w-8 drop-shadow-[0_0_8px_#38bdf8]" />
         </div>

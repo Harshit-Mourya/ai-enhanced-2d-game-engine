@@ -196,7 +196,7 @@ export default function GameScreen({ initialLevelId = 1, onExitToMenu }) {
       />
 
       {isLoadingProgress && (
-        <div className="absolute inset-0 z-[60] flex items-center justify-center bg-slate-950 text-sky-400">
+        <div className="absolute inset-0 z-60 flex items-center justify-center bg-slate-950 text-sky-400">
           Loading pilot progress...
         </div>
       )}
