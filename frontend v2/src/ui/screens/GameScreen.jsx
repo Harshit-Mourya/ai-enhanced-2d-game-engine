@@ -18,7 +18,11 @@ import {
 } from "../../services/progressService";
 import { createCheckpoint } from "../../engine/state/checkpoint";
 
-export default function GameScreen({ initialLevelId = 1, onExitToMenu }) {
+export default function GameScreen({
+  initialLevelId = 1,
+  startMode = "resume",
+  onExitToMenu,
+}) {
   const [gameState, setGameState] = useState(GAME_STATES.RUNNING);
   const [isLoadingProgress, setIsLoadingProgress] = useState(true);
 
@@ -44,13 +48,30 @@ export default function GameScreen({ initialLevelId = 1, onExitToMenu }) {
         const progress = data.progress;
         const checkpoint = progress?.checkpoint;
 
-        const currentProgressLevel = Number.isInteger(progress?.currentLevelId)
-          ? progress.currentLevelId
-          : initialLevelId;
-
         const unlockedLevel = Number.isInteger(progress?.unlockedLevels)
           ? progress.unlockedLevels
           : 1;
+
+        // Sector Select: load exactly the sector the player selected.
+        if (startMode === "select") {
+          if (
+            !Number.isInteger(initialLevelId) ||
+            initialLevelId < 1 ||
+            initialLevelId > unlockedLevel ||
+            initialLevelId > 3
+          ) {
+            dispatch(loadLevel(getLevelById(1)));
+          } else {
+            dispatch(loadLevel(getLevelById(initialLevelId)));
+          }
+
+          return;
+        }
+
+        // Quick Start: resume the saved checkpoint or current sector.
+        const currentProgressLevel = Number.isInteger(progress?.currentLevelId)
+          ? progress.currentLevelId
+          : initialLevelId;
 
         const checkpointIsValid =
           checkpoint &&
@@ -61,9 +82,7 @@ export default function GameScreen({ initialLevelId = 1, onExitToMenu }) {
           checkpoint.levelId <= 3;
 
         if (checkpointIsValid) {
-          const levelToLoad = getLevelById(checkpoint.levelId);
-
-          dispatch(loadLevel(levelToLoad));
+          dispatch(loadLevel(getLevelById(checkpoint.levelId)));
           dispatch(restoreCheckpoint(checkpoint));
         } else {
           const allowedLevel =
@@ -89,7 +108,7 @@ export default function GameScreen({ initialLevelId = 1, onExitToMenu }) {
     }
 
     initializeGame();
-  }, [dispatch, initialLevelId]);
+  }, [dispatch, initialLevelId, startMode]);
 
   useEffect(() => {
     const handlePause = (event) => {

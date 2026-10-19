@@ -13,13 +13,18 @@ export async function signup(userData) {
       return await response.json();
     }
   } catch {
-    console.warn("Backend auth offline, using Dexie IndexedDB offline fallback.");
+    console.warn(
+      "Backend auth offline, using Dexie IndexedDB offline fallback.",
+    );
   }
 
   // Dexie IndexedDB fallback
   const existing = await db.users.where({ email: userData.email }).first();
   if (existing) {
-    return { success: false, message: "User email already exists in local database." };
+    return {
+      success: false,
+      message: "User email already exists in local database.",
+    };
   }
 
   const userId = await db.users.add({
@@ -48,7 +53,9 @@ export async function login(userData) {
       return await response.json();
     }
   } catch {
-    console.warn("Backend auth offline, using Dexie IndexedDB offline fallback.");
+    console.warn(
+      "Backend auth offline, using Dexie IndexedDB offline fallback.",
+    );
   }
 
   // Dexie IndexedDB fallback
@@ -76,4 +83,9 @@ export async function login(userData) {
     user: { id: user.id, username: user.username, email: user.email },
     token: `local-token-${user.id}`,
   };
+}
+
+export function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
 }

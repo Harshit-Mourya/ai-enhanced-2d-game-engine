@@ -8,7 +8,7 @@ export default function LoginForm({ onSwitch, onSuccess }) {
 
   async function handleLogin() {
     try {
-      console.log("Logging in with:", { email, password });
+      console.log("Logging in with:", { email });
       const data = await login({ email, password });
 
       if (data.success) {

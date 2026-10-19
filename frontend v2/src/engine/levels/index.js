@@ -5,8 +5,7 @@ import level3 from "./level3.json";
 export const levels = [level1, level2, level3];
 
 export function getLevelById(id) {
-  const found = levels.find((lvl) => lvl.id === id);
-  return found || level1;
+  return levels.find((lvl) => lvl.id === Number(id)) || null;
 }
 
 export function getNextLevel(currentId) {

@@ -23,10 +23,49 @@ export function isEntityInSafeZone(entity, safeZones) {
   });
 }
 
+function applyDifficultyScaling(enemy, difficultyLevel) {
+  // Capture original stats once; never use scaled values as the base.
+  if (enemy.baseSpeed === undefined) {
+    enemy.baseSpeed = enemy.speed ?? 1.8;
+  }
+
+  if (enemy.baseAttackCooldown === undefined) {
+    enemy.baseAttackCooldown = enemy.attackCooldown ?? 900;
+  }
+
+  if (enemy.baseProjectileDamage === undefined) {
+    enemy.baseProjectileDamage =
+      enemy.projectileDamage ?? enemy.attackDamage ?? 8;
+  }
+
+  let speedMultiplier = 1;
+  let cooldownMultiplier = 1;
+  let damageMultiplier = 1;
+
+  if (difficultyLevel === "medium") {
+    speedMultiplier = 1.4;
+    cooldownMultiplier = 0.75;
+    damageMultiplier = 1.25;
+  } else if (difficultyLevel === "hard") {
+    speedMultiplier = 1.8;
+    cooldownMultiplier = 0.5;
+    damageMultiplier = 1.5;
+  }
+
+  enemy.speed = enemy.baseSpeed * speedMultiplier;
+  enemy.attackCooldown = Math.max(
+    1,
+    enemy.baseAttackCooldown * cooldownMultiplier,
+  );
+  enemy.projectileDamage = enemy.baseProjectileDamage * damageMultiplier;
+}
+
 export function updateEnemyAI(state) {
   const playerInSafeZone = isEntityInSafeZone(state.player, state.safeZones);
 
   state.enemies.forEach((enemy) => {
+    applyDifficultyScaling(enemy, state.difficultyLevel);
+
     // Save initial spawn location as guard post
     if (enemy.guardX === undefined) enemy.guardX = enemy.x;
     if (enemy.guardY === undefined) enemy.guardY = enemy.y;
@@ -46,7 +85,7 @@ export function updateEnemyAI(state) {
       enemyCenterY,
       playerCenterX,
       playerCenterY,
-      state.walls
+      state.walls,
     );
 
     enemy.hasLineOfSight = hasLOS;
@@ -74,8 +113,15 @@ export function updateEnemyAI(state) {
     // ===============================
     // IDLE / RETURN TO GUARD POST
     // ===============================
-    if (enemy.state === "idle" || enemy.state === "return" || enemy.state === "patrol") {
-      const distToGuard = Math.hypot(enemy.guardX - enemy.x, enemy.guardY - enemy.y);
+    if (
+      enemy.state === "idle" ||
+      enemy.state === "return" ||
+      enemy.state === "patrol"
+    ) {
+      const distToGuard = Math.hypot(
+        enemy.guardX - enemy.x,
+        enemy.guardY - enemy.y,
+      );
 
       if (distToGuard > 15) {
         const guardDx = enemy.guardX - enemy.x;
@@ -92,13 +138,27 @@ export function updateEnemyAI(state) {
     // CHASE STATE (Pathfinding towards Player)
     // ===============================
     else if (enemy.state === "chase") {
-      if (!enemy.path || enemy.pathIndex === undefined || Date.now() - (enemy.lastPathCalc || 0) > 500) {
-        enemy.path = findPathAStar(enemy.x, enemy.y, state.player.x, state.player.y, state.walls);
+      if (
+        !enemy.path ||
+        enemy.pathIndex === undefined ||
+        Date.now() - (enemy.lastPathCalc || 0) > 500
+      ) {
+        enemy.path = findPathAStar(
+          enemy.x,
+          enemy.y,
+          state.player.x,
+          state.player.y,
+          state.walls,
+        );
         enemy.pathIndex = 0;
         enemy.lastPathCalc = Date.now();
       }
 
-      if (enemy.path && enemy.path.length > 0 && enemy.pathIndex < enemy.path.length) {
+      if (
+        enemy.path &&
+        enemy.path.length > 0 &&
+        enemy.pathIndex < enemy.path.length
+      ) {
         const targetNode = enemy.path[enemy.pathIndex];
         const tDx = targetNode.x - enemy.x;
         const tDy = targetNode.y - enemy.y;
@@ -132,7 +192,10 @@ export function updateEnemyAI(state) {
       const now = Date.now();
       const attackInterval = enemy.attackCooldown || 900;
 
-      if (!enemy.lastAttackTime || now - enemy.lastAttackTime > attackInterval) {
+      if (
+        !enemy.lastAttackTime ||
+        now - enemy.lastAttackTime > attackInterval
+      ) {
         if (distance > 0 && hasLOS) {
           state.projectiles.push({
             x: enemyCenterX,
