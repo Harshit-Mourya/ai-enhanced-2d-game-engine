@@ -25,7 +25,9 @@ export default function SettingsScreen({ onBack }) {
   };
 
   const handleResetProgress = async () => {
-    if (confirm("Are you sure you want to reset all game progress and stats?")) {
+    if (
+      confirm("Are you sure you want to reset all game progress and stats?")
+    ) {
       await db.progress.clear();
       await db.stats.clear();
       await db.achievements.clear();
@@ -46,16 +48,21 @@ export default function SettingsScreen({ onBack }) {
           <div>
             <div className="flex justify-between items-center mb-2 font-bold text-slate-300">
               <span className="flex items-center gap-2">
-                <Volume2 className="w-4 h-4 text-sky-400" /> Sound Effects Volume
+                <Volume2 className="w-4 h-4 text-sky-400" /> Sound Effects
+                Volume
               </span>
-              <span className="text-sky-400 font-mono">{settings.soundVolume}%</span>
+              <span className="text-sky-400 font-mono">
+                {settings.soundVolume}%
+              </span>
             </div>
             <input
               type="range"
               min="0"
               max="100"
               value={settings.soundVolume}
-              onChange={(e) => handleChange("soundVolume", Number(e.target.value))}
+              onChange={(e) =>
+                handleChange("soundVolume", Number(e.target.value))
+              }
               className="w-full accent-sky-400 cursor-pointer"
             />
           </div>
@@ -66,14 +73,18 @@ export default function SettingsScreen({ onBack }) {
               <span className="flex items-center gap-2">
                 <VolumeX className="w-4 h-4 text-sky-400" /> Music Volume
               </span>
-              <span className="text-sky-400 font-mono">{settings.musicVolume}%</span>
+              <span className="text-sky-400 font-mono">
+                {settings.musicVolume}%
+              </span>
             </div>
             <input
               type="range"
               min="0"
               max="100"
               value={settings.musicVolume}
-              onChange={(e) => handleChange("musicVolume", Number(e.target.value))}
+              onChange={(e) =>
+                handleChange("musicVolume", Number(e.target.value))
+              }
               className="w-full accent-sky-400 cursor-pointer"
             />
           </div>
@@ -86,7 +97,9 @@ export default function SettingsScreen({ onBack }) {
             <input
               type="checkbox"
               checked={settings.showDetectionRadius}
-              onChange={(e) => handleChange("showDetectionRadius", e.target.checked)}
+              onChange={(e) =>
+                handleChange("showDetectionRadius", e.target.checked)
+              }
               className="w-5 h-5 accent-sky-500 cursor-pointer rounded"
             />
           </div>

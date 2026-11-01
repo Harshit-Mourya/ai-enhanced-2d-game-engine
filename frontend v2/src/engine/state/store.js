@@ -470,50 +470,50 @@ const entitySlice = createSlice({
       state.gameStatus = action.payload;
     },
 
-    restoreCheckpoint: (state, action) => {
-      const checkpoint = action.payload;
+    // restoreCheckpoint: (state, action) => {
+    //   const checkpoint = action.payload;
 
-      if (!checkpoint || checkpoint.levelId !== state.currentLevelId) {
-        return;
-      }
+    //   if (!checkpoint || checkpoint.levelId !== state.currentLevelId) {
+    //     return;
+    //   }
 
-      if (checkpoint.player) {
-        state.player = {
-          ...state.player,
-          ...checkpoint.player,
-          dx: 0,
-          dy: 0,
-          collided: false,
-          inSafeZone: false,
-        };
-      }
+    //   if (checkpoint.player) {
+    //     state.player = {
+    //       ...state.player,
+    //       ...checkpoint.player,
+    //       dx: 0,
+    //       dy: 0,
+    //       collided: false,
+    //       inSafeZone: false,
+    //     };
+    //   }
 
-      state.score = checkpoint.score ?? state.score;
-      state.survivalTime = checkpoint.survivalTime ?? state.survivalTime;
-      state.enemiesKilled = checkpoint.enemiesKilled ?? state.enemiesKilled;
-      state.artifactsCollected =
-        checkpoint.artifactsCollected ?? state.artifactsCollected;
+    //   state.score = checkpoint.score ?? state.score;
+    //   state.survivalTime = checkpoint.survivalTime ?? state.survivalTime;
+    //   state.enemiesKilled = checkpoint.enemiesKilled ?? state.enemiesKilled;
+    //   state.artifactsCollected =
+    //     checkpoint.artifactsCollected ?? state.artifactsCollected;
 
-      if (Array.isArray(checkpoint.enemies)) {
-        state.enemies = checkpoint.enemies;
-      }
+    //   if (Array.isArray(checkpoint.enemies)) {
+    //     state.enemies = checkpoint.enemies;
+    //   }
 
-      if (Array.isArray(checkpoint.pickups)) {
-        state.pickups = checkpoint.pickups;
-      }
+    //   if (Array.isArray(checkpoint.pickups)) {
+    //     state.pickups = checkpoint.pickups;
+    //   }
 
-      if (checkpoint.observatory) {
-        state.observatory = checkpoint.observatory;
-      }
+    //   if (checkpoint.observatory) {
+    //     state.observatory = checkpoint.observatory;
+    //   }
 
-      if (checkpoint.exitGate) {
-        state.exitGate = checkpoint.exitGate;
-      }
+    //   if (checkpoint.exitGate) {
+    //     state.exitGate = checkpoint.exitGate;
+    //   }
 
-      state.takenDamage = checkpoint.takenDamage ?? false;
-      state.projectiles = [];
-      state.gameStatus = "playing";
-    },
+    //   state.takenDamage = checkpoint.takenDamage ?? false;
+    //   state.projectiles = [];
+    //   state.gameStatus = "playing";
+    // },
   },
 });
 
@@ -525,7 +525,7 @@ export const {
   clearNotice,
   loadLevel,
   setGameStatus,
-  restoreCheckpoint,
+  // restoreCheckpoint,
 } = entitySlice.actions;
 
 export const store = configureStore({

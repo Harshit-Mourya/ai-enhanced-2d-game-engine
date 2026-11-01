@@ -1,5 +1,24 @@
+import { useEffect, useState } from "react";
+import { getOrCreateUserData } from "../../../services/db";
+
 export default function DetectionLayer({ enemies }) {
-  if (!enemies) return null;
+  const [showDetectionRadius, setShowDetectionRadius] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    getOrCreateUserData("guest").then((data) => {
+      if (!cancelled) {
+        setShowDetectionRadius(data.settings?.showDetectionRadius ?? true);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (!showDetectionRadius || !enemies) return null;
 
   return (
     <>

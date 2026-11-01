@@ -16,7 +16,7 @@ export default function SvgRenderer() {
           setMousePosition({
             x: e.clientX - rect.left,
             y: e.clientY - rect.top,
-          })
+          }),
         );
       }}
       onMouseDown={(e) => {

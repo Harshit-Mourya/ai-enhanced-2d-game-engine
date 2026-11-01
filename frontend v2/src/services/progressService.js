@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/progress";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/progress`;
 
 async function progressRequest(path = "", options = {}) {
   const token = localStorage.getItem("token");
@@ -29,13 +29,6 @@ export async function getGameProgress() {
   return progressRequest();
 }
 
-export async function saveCheckpoint(levelId, checkpoint) {
-  return progressRequest("/checkpoint", {
-    method: "PUT",
-    body: JSON.stringify({ levelId, checkpoint }),
-  });
-}
-
 export async function completeSector(levelId, stats) {
   return progressRequest("/complete", {
     method: "POST",
@@ -45,11 +38,5 @@ export async function completeSector(levelId, stats) {
       survivalTime: stats.survivalTime,
       enemiesKilled: stats.enemiesKilled,
     }),
-  });
-}
-
-export async function clearSavedCheckpoint() {
-  return progressRequest("/checkpoint", {
-    method: "DELETE",
   });
 }
