@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
-import { setMousePosition, spawnProjectile } from "../state/store";
+import { setMousePosition } from "../state/store";
+import { shoot } from "../input/shootingHandler";
 import GameRenderer from "./GameRenderer";
 
-export default function SvgRenderer() {
+export default function SvgRenderer({ portalAnimation }) {
   const dispatch = useDispatch();
 
   return (
@@ -22,11 +23,11 @@ export default function SvgRenderer() {
       onMouseDown={(e) => {
         // Left click to fire laser weapon
         if (e.button === 0) {
-          dispatch(spawnProjectile());
+          shoot(dispatch);
         }
       }}
     >
-      <GameRenderer />
+      <GameRenderer portalAnimation={portalAnimation} />{" "}
     </svg>
   );
 }

@@ -7,12 +7,31 @@ import EntityLayer from "./layers/EntityLayer";
 import cometSVG from "../../assets/characters/comet.svg";
 import meteoriteSVG from "../../assets/characters/meteorite.svg";
 
-export default function GameRenderer() {
-  const { player, enemies, safeZones, walls, observatory, exitGate, pickups, projectiles, arena } =
-    useSelector((state) => state.entities);
+export default function GameRenderer({ portalAnimation }) {
+  const {
+    player,
+    enemies,
+    safeZones,
+    walls,
+    observatory,
+    exitGate,
+    pickups,
+    projectiles,
+    arena,
+    explosions,
+    playerDefeatPending,
+  } = useSelector((state) => state.entities);
 
   const arenaWidth = arena?.width || 2000;
   const arenaHeight = arena?.height || 1500;
+
+  // console.log("Player state:", {
+  //   x: player.x,
+  //   y: player.y,
+  //   dx: player.dx,
+  //   dy: player.dy,
+  //   portalAnimation,
+  // });
 
   return (
     <g
@@ -37,6 +56,9 @@ export default function GameRenderer() {
         pickups={pickups}
         observatory={observatory}
         exitGate={exitGate}
+        explosions={explosions}
+        playerDefeatPending={playerDefeatPending}
+        portalAnimation={portalAnimation}
       />
 
       {/* Projectiles */}

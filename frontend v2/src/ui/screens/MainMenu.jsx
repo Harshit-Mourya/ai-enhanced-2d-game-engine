@@ -14,6 +14,8 @@ import {
   Rocket,
   LogOut,
 } from "lucide-react";
+import hoverSound from "../../assets/sounds/hover-button.mp3";
+import clickSound from "../../assets/sounds/click.mp3";
 
 export default function MainMenu({
   onStartGame,
@@ -25,6 +27,7 @@ export default function MainMenu({
 
   const [userData, setUserData] = useState(null);
   const [isLoadingProgress, setIsLoadingProgress] = useState(true);
+  const [soundVolume, setSoundVolume] = useState(80);
 
   useEffect(() => {
     let cancelled = false;
@@ -106,6 +109,29 @@ export default function MainMenu({
     };
   }, []);
 
+  // Load saved sound volume for menu interaction sounds.
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadSoundVolume() {
+      try {
+        const data = await getOrCreateUserData("guest");
+
+        if (!cancelled) {
+          setSoundVolume(data.settings?.soundVolume ?? 80);
+        }
+      } catch (error) {
+        console.error("Unable to load sound settings:", error);
+      }
+    }
+
+    loadSoundVolume();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const unlockedLevels = Math.min(
     3,
     Math.max(1, Number(userData?.progress?.unlockedLevels) || 1),
@@ -133,6 +159,24 @@ export default function MainMenu({
     3,
     Math.max(1, Number(progress.currentLevelId) || 1),
   );
+
+  // Play sound when hovering over menu options.
+  const playHoverSound = () => {
+    if (soundVolume === 0) return;
+
+    const audio = new Audio(hoverSound);
+
+    audio.volume = Math.max(0, Math.min(100, soundVolume)) / 100;
+
+    audio.play().catch(() => {});
+  };
+  const playClickSound = () => {
+    if (soundVolume === 0) return;
+
+    const audio = new Audio(clickSound);
+    audio.volume = Math.max(0, Math.min(100, soundVolume)) / 100;
+    audio.play().catch(() => {});
+  };
 
   return (
     <div className="relative flex h-screen flex-col items-center justify-center bg-[radial-gradient(ellipse_at_top,#0f172a,#020617_80%)] text-white select-none overflow-hidden">
@@ -162,6 +206,8 @@ export default function MainMenu({
             onClick={() => onStartGame(quickStartLevel, { mode: "resume" })}
             className="group flex items-center justify-center gap-3 rounded-2xl bg-linear-to-r from-sky-500 to-cyan-500 px-6 py-4 text-base font-extrabold tracking-wider shadow-[0_0_20px_rgba(14,165,233,0.5)] transition-all hover:scale-105 hover:from-sky-400 hover:to-cyan-400"
             disabled={isLoadingProgress}
+            onMouseEnter={playHoverSound}
+            onClickCapture={playClickSound}
           >
             <Play className="w-5 h-5 fill-white" /> QUICK START
           </button>
@@ -169,6 +215,8 @@ export default function MainMenu({
           <button
             onClick={() => setActiveModal("levels")}
             className="flex items-center justify-center gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 px-6 py-3.5 text-sm font-bold text-slate-200 backdrop-blur-md transition-all hover:border-sky-500/50 hover:bg-slate-800"
+            onMouseEnter={playHoverSound}
+            onClickCapture={playClickSound}
           >
             <Layers className="w-4 h-4 text-sky-400" /> SECTOR SELECT (
             {progress.unlockedLevels}/3)
@@ -177,6 +225,8 @@ export default function MainMenu({
           <button
             onClick={() => setActiveModal("stats")}
             className="flex items-center justify-center gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 px-6 py-3.5 text-sm font-bold text-slate-200 backdrop-blur-md transition-all hover:border-amber-500/50 hover:bg-slate-800"
+            onMouseEnter={playHoverSound}
+            onClickCapture={playClickSound}
           >
             <Trophy className="w-4 h-4 text-amber-400" /> ACHIEVEMENTS & STATS
           </button>
@@ -185,6 +235,8 @@ export default function MainMenu({
             <button
               onClick={onSettings}
               className="flex items-center justify-center gap-2 rounded-2xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-xs font-bold text-slate-300 transition-all hover:bg-slate-800"
+              onMouseEnter={playHoverSound}
+              onClickCapture={playClickSound}
             >
               <Settings className="w-4 h-4 text-slate-400" /> SETTINGS
             </button>
@@ -193,6 +245,8 @@ export default function MainMenu({
               <button
                 onClick={onLogout}
                 className="flex items-center justify-center gap-2 rounded-2xl border border-red-500/30 bg-slate-900/80 px-4 py-3 text-xs font-bold text-red-300 transition-all hover:border-red-500/60 hover:bg-slate-800"
+                onMouseEnter={playHoverSound}
+                onClickCapture={playClickSound}
               >
                 <LogOut className="h-4 w-4" />
                 LOGOUT
@@ -201,6 +255,8 @@ export default function MainMenu({
               <button
                 onClick={onAuth}
                 className="flex items-center justify-center gap-2 rounded-2xl border border-slate-800 bg-slate-900/80 px-4 py-3 text-xs font-bold text-slate-300 transition-all hover:bg-slate-800"
+                onMouseEnter={playHoverSound}
+                onClickCapture={playClickSound}
               >
                 <User className="h-4 w-4 text-sky-400" />
                 ACCOUNT

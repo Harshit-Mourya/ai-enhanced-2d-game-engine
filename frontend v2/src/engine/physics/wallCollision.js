@@ -29,6 +29,14 @@ export function resolveWallCollision(entity, walls) {
       const minOverlapY =
         overlapTop < overlapBottom ? -overlapTop : overlapBottom;
 
+      // console.log("Wall collision detected:", {
+      //   entityPosition: { x: entity.x, y: entity.y },
+      //   wallPosition: { x: wall.x, y: wall.y },
+      //   wallSize: { width: wall.width, height: wall.height },
+      //   minOverlapX,
+      //   minOverlapY,
+      // });
+
       if (Math.abs(minOverlapX) < Math.abs(minOverlapY)) {
         entity.x += minOverlapX;
       } else {

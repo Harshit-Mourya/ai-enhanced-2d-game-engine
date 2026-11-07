@@ -17,8 +17,275 @@
 /* Global reset */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   background-color: #020617;
   color: #f8fafc;
   overflow: hidden;
+}
+
+/* ================================= */
+/* EXPLOSION ANIMATIONS */
+/* ================================= */
+
+.explosion-ring-outer {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: explosion-ring 1000ms ease-out forwards;
+}
+
+.explosion-ring-inner {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: explosion-ring 750ms ease-out forwards;
+}
+
+.explosion-flash {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: explosion-flash 300ms ease-out forwards;
+}
+
+.explosion-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: explosion-core 1000ms ease-out forwards;
+}
+
+@keyframes explosion-ring {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(7);
+    opacity: 0;
+  }
+}
+
+@keyframes explosion-flash {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+
+  40% {
+    transform: scale(2.5);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explosion-core {
+  0% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+
+  35% {
+    transform: scale(1.8);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* ================================= */
+/* PORTAL ANIMATIONS */
+/* ================================= */
+
+/* Portal opening and closing */
+.portal-effect {
+  transform-box: fill-box;
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.portal-arrival {
+  animation: portal-arrival 1500ms ease-in-out forwards;
+}
+
+.portal-departure {
+  animation: portal-departure 1500ms ease-in-out forwards;
+}
+
+@keyframes portal-arrival {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+
+  30% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  65% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+}
+
+@keyframes portal-departure {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+
+  30% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  65% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+}
+
+/* Rotating portal energy rings */
+.portal-ring-outer {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: portal-spin-outer 4s linear infinite;
+}
+
+.portal-ring-inner {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: portal-spin-inner 2s linear infinite;
+}
+
+@keyframes portal-spin-outer {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes portal-spin-inner {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* Portal energy core */
+.portal-core {
+  animation: portal-core-pulse 1s ease-in-out infinite alternate;
+}
+
+.portal-glow {
+  animation: portal-glow-pulse 700ms ease-in-out infinite alternate;
+}
+
+@keyframes portal-core-pulse {
+  from {
+    opacity: 0.65;
+    r: 18;
+  }
+
+  to {
+    opacity: 1;
+    r: 24;
+  }
+}
+
+@keyframes portal-glow-pulse {
+  from {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+}
+
+/* Spaceship materialization */
+.portal-player-arrival {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spaceship-arrival 1500ms ease-out forwards;
+}
+
+@keyframes spaceship-arrival {
+  0% {
+    opacity: 0;
+    transform: scale(0.05);
+  }
+
+  30% {
+    opacity: 0;
+    transform: scale(0.05);
+  }
+
+  70% {
+    opacity: 0.8;
+    transform: scale(0.7);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Spaceship disappearing into portal */
+.portal-player-departure {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spaceship-departure 1500ms ease-in forwards;
+}
+
+@keyframes spaceship-departure {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  70% {
+    opacity: 0.8;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.05);
+  }
 }

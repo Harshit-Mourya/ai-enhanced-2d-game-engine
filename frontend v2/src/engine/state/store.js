@@ -14,6 +14,14 @@ const entitySlice = createSlice({
     score: 0,
     enemiesKilled: 0,
     artifactsCollected: 0,
+    enemyShotsFired: 0,
+    playerDamageEvents: 0,
+    enemyDamageEvents: 0,
+    explosions: [],
+    explosionEvents: 0,
+    pickupCollectedEvents: 0,
+    nextExplosionId: 1,
+    playerDefeatPending: false,
     takenDamage: false,
     weaponDisabledNotice: false,
     observatoryNotice: null,
@@ -79,8 +87,29 @@ const entitySlice = createSlice({
 
     // MAIN GAME TICK
     updatePosition: (state, action) => {
-      if (state.gameStatus === "gameOver" || state.gameStatus === "victory")
+      // Update active explosion timers
+      state.explosions = state.explosions.filter((explosion) => {
+        explosion.remainingMs -= action.payload;
+
+        if (explosion.remainingMs <= 0) {
+          if (explosion.type === "player") {
+            state.playerDefeatPending = false;
+            state.gameStatus = "gameOver";
+          }
+
+          return false;
+        }
+
+        return true;
+      });
+
+      // Stop normal gameplay after a terminal state
+      if (state.gameStatus === "gameOver" || state.gameStatus === "victory") {
         return;
+      }
+
+      // Pause normal gameplay while player defeat animation plays
+      if (state.playerDefeatPending) return;
 
       const deltaSec = action.payload / 1000;
 
@@ -110,7 +139,18 @@ const entitySlice = createSlice({
       state.player.inSafeZone = playerInSafe;
 
       // Enemy AI Update (Line of Sight and Fixed Guarding behavior)
+      // Enemy AI Update
+      const previousProjectileCount = state.projectiles.length;
+
       updateEnemyAI(state);
+
+      const newProjectileCount =
+        state.projectiles.length - previousProjectileCount;
+
+      if (newProjectileCount > 0) {
+        state.enemyShotsFired =
+          (state.enemyShotsFired || 0) + newProjectileCount;
+      }
       state.enemies.forEach((enemy) => {
         resolveWallCollision(enemy, state.walls);
       });
@@ -164,6 +204,7 @@ const entitySlice = createSlice({
           if (playerHit) {
             state.player.health -= projectile.damage;
             state.takenDamage = true;
+            state.playerDamageEvents = (state.playerDamageEvents || 0) + 1;
             return false;
           }
           return true;
@@ -181,9 +222,23 @@ const entitySlice = createSlice({
           if (enemyHit) {
             enemy.health -= projectile.damage;
             hitEnemy = true;
-            if (enemy.health <= 0) {
+            state.enemyDamageEvents = (state.enemyDamageEvents || 0) + 1;
+
+            if (enemy.health <= 0 && !enemy.destroyed) {
+              enemy.destroyed = true;
+
               state.score += 200;
               state.enemiesKilled += 1;
+
+              state.explosions.push({
+                id: state.nextExplosionId++,
+                x: enemy.x,
+                y: enemy.y,
+                type: "enemy",
+                remainingMs: 1000,
+              });
+
+              state.explosionEvents += 1;
             }
           }
         });
@@ -203,6 +258,7 @@ const entitySlice = createSlice({
         const dist = Math.hypot(pCenterX - pickup.x, pCenterY - pickup.y);
 
         if (dist < 38) {
+          state.pickupCollectedEvents = (state.pickupCollectedEvents || 0) + 1;
           state.artifactsCollected = (state.artifactsCollected || 0) + 1;
 
           if (pickup.type === "plasma-cell") {
@@ -360,9 +416,19 @@ const entitySlice = createSlice({
       }
 
       // Game Over Condition
-      if (state.player.health <= 0) {
+      if (state.player.health <= 0 && !state.playerDefeatPending) {
         state.player.health = 0;
-        state.gameStatus = "gameOver";
+        state.playerDefeatPending = true;
+
+        state.explosions.push({
+          id: state.nextExplosionId++,
+          x: state.player.x,
+          y: state.player.y,
+          type: "player",
+          remainingMs: 1000,
+        });
+
+        state.explosionEvents += 1;
       }
     },
 

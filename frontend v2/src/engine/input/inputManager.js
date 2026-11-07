@@ -1,3 +1,5 @@
+import { shoot } from "./shootingHandler";
+
 const keys = {};
 
 export function resetInputKeys(dispatch, setDirection) {
@@ -24,9 +26,17 @@ export function initializeInput(dispatch, setDirection) {
 
   const handleKeyDown = (e) => {
     // Prevent default scrolling on arrow keys and space
-    if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)) {
+    if (
+      ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)
+    ) {
       e.preventDefault();
     }
+
+    // Space key to fire laser weapon
+    if (e.code === "Space" && !e.repeat) {
+      shoot(dispatch);
+    }
+
     keys[e.key] = true;
     updateDirection();
   };

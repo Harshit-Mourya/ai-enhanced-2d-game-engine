@@ -17,6 +17,9 @@ export default function EntityLayer({
   pickups = [],
   observatory = null,
   exitGate = null,
+  explosions = [],
+  playerDefeatPending = false,
+  portalAnimation = null,
 }) {
   return (
     <g className="select-none">
@@ -107,10 +110,14 @@ export default function EntityLayer({
               observatory.activated
                 ? "#0369a1"
                 : observatory.status === "charging"
-                ? "#0284c7"
-                : "#78350f"
+                  ? "#0284c7"
+                  : "#78350f"
             }
-            stroke={observatory.activated || observatory.status === "charging" ? "#38bdf8" : "#f59e0b"}
+            stroke={
+              observatory.activated || observatory.status === "charging"
+                ? "#38bdf8"
+                : "#f59e0b"
+            }
             strokeWidth="1"
           />
           <text
@@ -125,8 +132,8 @@ export default function EntityLayer({
             {observatory.activated
               ? "✓ ACTIVATED"
               : observatory.status === "charging"
-              ? `UPLINK: ${Math.floor(observatory.progress || 0)}%`
-              : "APPROACH TO ACTIVATE"}
+                ? `UPLINK: ${Math.floor(observatory.progress || 0)}%`
+                : "APPROACH TO ACTIVATE"}
           </text>
         </g>
       )}
@@ -202,7 +209,9 @@ export default function EntityLayer({
             textAnchor="middle"
             className="uppercase tracking-wider"
           >
-            {exitGate.unsealed ? "GATE UNSEALED - ESCAPE" : "GATE LOCKED (OBSERVATORY REQUIRED)"}
+            {exitGate.unsealed
+              ? "GATE UNSEALED - ESCAPE"
+              : "GATE LOCKED (OBSERVATORY REQUIRED)"}
           </text>
         </g>
       )}
@@ -307,7 +316,10 @@ export default function EntityLayer({
           badgeColor = "#ef4444";
         }
 
-        const hpPercent = Math.max(0, (enemy.health / (enemy.maxHealth || 5)) * 100);
+        const hpPercent = Math.max(
+          0,
+          (enemy.health / (enemy.maxHealth || 5)) * 100,
+        );
 
         return (
           <g key={enemy.id}>
@@ -325,7 +337,13 @@ export default function EntityLayer({
               y={enemy.y - 12}
               width={(40 * hpPercent) / 100}
               height="4"
-              fill={hpPercent > 50 ? "#22c55e" : hpPercent > 25 ? "#eab308" : "#ef4444"}
+              fill={
+                hpPercent > 50
+                  ? "#22c55e"
+                  : hpPercent > 25
+                    ? "#eab308"
+                    : "#ef4444"
+              }
               rx="2"
             />
 
@@ -356,10 +374,96 @@ export default function EntityLayer({
       })}
 
       {/* =============================== */}
+      {/* EXPLOSION EFFECTS */}
+      {/* =============================== */}
+
+      {explosions.map((explosion) => (
+        <g
+          key={explosion.id}
+          transform={`translate(${explosion.x + 20} ${explosion.y + 20})`}
+          className="pointer-events-none"
+        >
+          {/* Outer expanding ring */}
+          <circle
+            r="8"
+            fill="none"
+            stroke="#f97316"
+            strokeWidth="4"
+            className="explosion-ring-outer"
+          />
+
+          {/* Inner energy ring */}
+          <circle
+            r="5"
+            fill="none"
+            stroke="#facc15"
+            strokeWidth="3"
+            className="explosion-ring-inner"
+          />
+
+          {/* Central flash */}
+          <circle r="12" fill="#ffffff" className="explosion-flash" />
+
+          {/* Explosion core */}
+          <circle r="8" fill="#fb923c" className="explosion-core" />
+        </g>
+      ))}
+
+      {/* =============================== */}
+      {/* PLAYER PORTAL ANIMATION */}
+      {/* =============================== */}
+
+      {portalAnimation && player && (
+        <g transform={`translate(${player.x + 20} ${player.y + 20})`}>
+          <g className={`portal-effect portal-${portalAnimation}`}>
+            {/* Outer energy ring */}
+            <circle
+              r="42"
+              fill="none"
+              stroke="#38bdf8"
+              strokeWidth="3"
+              strokeDasharray="12 5"
+              className="portal-ring-outer"
+            />
+
+            {/* Inner energy ring */}
+            <circle
+              r="30"
+              fill="none"
+              stroke="#a78bfa"
+              strokeWidth="3"
+              strokeDasharray="5 3"
+              className="portal-ring-inner"
+            />
+
+            {/* Portal opening */}
+            <circle
+              r="23"
+              fill="#020617"
+              stroke="#38bdf8"
+              strokeWidth="2"
+              className="portal-core"
+            />
+
+            {/* Central energy glow */}
+            <circle
+              r="15"
+              fill="#2563eb"
+              opacity="0.65"
+              className="portal-glow"
+            />
+          </g>
+        </g>
+      )}
+
+      {/* =============================== */}
       {/* PLAYER SPACESHIP */}
       {/* =============================== */}
-      {player && (
-        <g key="player">
+      {player && !playerDefeatPending && (
+        <g
+          key="player"
+          className={portalAnimation ? `portal-player-${portalAnimation}` : ""}
+        >
           {/* Safe Zone Forcefield Shield */}
           {player.inSafeZone && (
             <circle
@@ -388,8 +492,16 @@ export default function EntityLayer({
           {/* Engine Thrust Glow behind ship */}
           {(player.dx !== 0 || player.dy !== 0) && (
             <circle
-              cx={player.x + 20 - Math.cos(((player.rotation || 0) * Math.PI) / 180) * 18}
-              cy={player.y + 20 - Math.sin(((player.rotation || 0) * Math.PI) / 180) * 18}
+              cx={
+                player.x +
+                20 -
+                Math.cos(((player.rotation || 0) * Math.PI) / 180) * 18
+              }
+              cy={
+                player.y +
+                20 -
+                Math.sin(((player.rotation || 0) * Math.PI) / 180) * 18
+              }
               r="5"
               fill="#38bdf8"
               className="animate-ping"

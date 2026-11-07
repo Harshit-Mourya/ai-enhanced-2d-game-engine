@@ -71,7 +71,7 @@ export default function SettingsScreen({ onBack }) {
           <div>
             <div className="flex justify-between items-center mb-2 font-bold text-slate-300">
               <span className="flex items-center gap-2">
-                <VolumeX className="w-4 h-4 text-sky-400" /> Music Volume
+                <Volume2 className="w-4 h-4 text-sky-400" /> Music Volume
               </span>
               <span className="text-sky-400 font-mono">
                 {settings.musicVolume}%
